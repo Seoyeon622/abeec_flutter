@@ -24,7 +24,7 @@ class _SearchVocaState extends State<SearchVoca> {
 
   Future pickImage() async {
     try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+      final XFile? image = await _picker.pickImage(source: ImageSource.camera);
       if (image == null) return;
 
       final imageTemporary = File(image.path);
@@ -64,7 +64,8 @@ class _SearchVocaState extends State<SearchVoca> {
     res = jsonDecode(ponse);
 
     if(res['duplicate'] == "yes")
-      return await ShowDialog(res['id']);
+      return await ShowDialog(res['id'].toString());
+    //return await ShowDialog(res['id'].toString(),base64Image);
     else
       return await Get.to(() => VocaDetail(), arguments: res);
   }
@@ -80,11 +81,11 @@ class _SearchVocaState extends State<SearchVoca> {
         padding: EdgeInsets.all(32),
         child: Column(
           children: [
-            const SizedBox(height: 24,),
-            Text("ABeeC", style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),),
+            const SizedBox(height: 20,),
+           Text("ABeeC", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
             Spacer(),
             image != null ? Image.file(image!,
-              width: 350, height: 350, fit: BoxFit.cover,) : FlutterLogo(size: 350),
+              width: 280, height: 280, fit: BoxFit.cover,) : FlutterLogo(size: 280),
             const SizedBox(height: 48,),
             ElevatedButton(
               onPressed: () {pickImage();},
@@ -104,7 +105,7 @@ class _SearchVocaState extends State<SearchVoca> {
       ),
     );
   }
-
+//ShowDialog(String id,String base64Image) {
   ShowDialog(String id) {
     showDialog(
         context: context,
@@ -128,12 +129,13 @@ class _SearchVocaState extends State<SearchVoca> {
             ),
             actions: <Widget>[
               TextButton(onPressed: () {ifDuplicate();}, child: Text("YES")),
+              //TextButton(onPressed:() {ifDuplicate(id,base64Image);},child:Text("YES")),
               TextButton(onPressed: () {Get.to(() => VocaDetail(), arguments: res);}, child: Text("NO")),
             ],
           );
         });
   }
-
+//ifDuplicate(String id,String base64Image) async {
   ifDuplicate() async {
     Uri url = Uri.parse('http://54.157.224.91:5000/dbinsert');
     http.Response response = await http.post(
@@ -142,6 +144,7 @@ class _SearchVocaState extends State<SearchVoca> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode({'response': 'yes'}),
+      //body: jsonEncode({'image':'$base64Image','id':'$id'}),
     );
     print("------------");
     print(response.body);
@@ -150,3 +153,5 @@ class _SearchVocaState extends State<SearchVoca> {
 
 
 }
+
+// 서버에서 해당 my_voca table id 값으로 image 부분 갱신 & 해당 image 서버에 저장
