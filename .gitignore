@@ -56,3 +56,5 @@ app.*.map.json
 *.app
 /unity/CardGame/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /unity/CardGame/[Aa]ssets/[Ss]treamingAssets/aa/*
+/unity/CardGame/Temp/UnityLockfile
+unity/CardGame/Temp/StagingArea/symbols
