@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'Mission.dart';
+
 class MainPage extends StatelessWidget {
 
   @override
@@ -27,6 +29,9 @@ class MainPage extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {Get.to(UnityDemoScreen());},
                 child: Text("미니게임")),
+            ElevatedButton(
+                onPressed: () {Get.to(Mission());},
+                child: Text("미션")),
           ],
         ),
       ),
