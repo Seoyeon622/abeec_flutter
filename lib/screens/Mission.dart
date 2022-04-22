@@ -55,6 +55,8 @@ class _MissionState extends State<Mission>{
 
 
 }*/
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -72,11 +74,13 @@ class _MissionState extends State<Mission>{
     return MaterialApp(
         title: 'Flutter Layout demo',
         home: Scaffold(
-            appBar: AppBar(
-                title: const Text('mission page')
-            ),
+            //appBar: AppBar(
+             //   title: const Text('mission page')
+            //),
             body: Center(
-                child: Column(
+                child:SafeArea(
+
+                    child: Column(
                     children: <Widget>[
                       const SizedBox(height: 10),
                       const SizedBox(
@@ -125,8 +129,9 @@ class _MissionState extends State<Mission>{
                       Expanded(child: Container(
                         color: Colors.amberAccent,
                         child: Center( child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            const SizedBox(height: 10,),
+                            //const SizedBox(height: 10,),
                             const Text("장유진",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,), // 여기에 이름 넣어주기 ( ID )
                             //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
@@ -144,8 +149,9 @@ class _MissionState extends State<Mission>{
                       ) ),
 
                     ],
-                ) // Hands on! 여기를 아래 코드로 대체하면 된다.
-            )
+                  ) // Hands on! 여기를 아래 코드로 대체하면 된다.
+                )
+              )
         )
     );
   }
