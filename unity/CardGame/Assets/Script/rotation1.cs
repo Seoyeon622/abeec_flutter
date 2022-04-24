@@ -63,7 +63,8 @@ public class rotation1 : MonoBehaviour
 
     private IEnumerator RotateCard_Front()
     {
-
+        Debug.Log(thisCard.wordImage.name);
+        
         coroutineAllowed = false;
         for (float i = 0f; i <= 180f; i += 10f)
         {

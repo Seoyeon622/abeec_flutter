@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System;
+
+
 
 [Serializable]
 public class GameDirector : MonoBehaviour
@@ -15,6 +18,11 @@ public class GameDirector : MonoBehaviour
     public AudioClip correctAudio;
     public AudioClip wrongAudio;
     public AudioClip doneAudio;
+
+    public GameObject wordPanel; // *****맞추면 단어 보여주는 창*****
+
+    private GameObject wordText; // *****단어 텍스트*****
+
 
     public int touch_c = 0;
     public int score = 0;
@@ -32,6 +40,8 @@ public class GameDirector : MonoBehaviour
     void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
+        wordPanel.SetActive(false); //*****
+       
     }
 
     public void Count_minus()
@@ -56,7 +66,7 @@ public class GameDirector : MonoBehaviour
                         hit.transform.gameObject.GetComponent<rotation1>().react();
 
 
-                        Debug.Log(hit.transform.gameObject.name);
+                        //Debug.Log(hit.transform.gameObject.name);
                     }
                     catch (NullReferenceException ie)
                     {
@@ -70,7 +80,13 @@ public class GameDirector : MonoBehaviour
 
             case STATE.HIT:
                 StartCoroutine(check_Card());
-                break;
+                if (Input.GetMouseButtonDown(0)&&wordPanel.activeSelf == true)  //여기 if문 삭제해도 무방. 단어창 띄워주고 터치하면 빨리 사라지게 하려고 만듦.
+                {
+                    this.GetComponent<Timer>().timeStop = false;
+                    wordPanel.SetActive(false);
+                    state = STATE.IDLE;
+                }
+                break;  
         }
 
     }
@@ -87,11 +103,14 @@ public class GameDirector : MonoBehaviour
 
             if (check_card[0] == check_card[1]) //이미지 비교
             {
+                
                 touch_c = 0;
-                state = STATE.IDLE;
                 score += 1; // 짝 맞으면 점수 1점씩 더함 총 8카드에서는 4점이 최대
                 audioSource.clip = correctAudio;
                 audioSource.Play();
+
+                StartCoroutine(show_Word());
+
                 if (score == GetComponent<BuildGame>().level / 2)
                 {
                     audioSource.clip = doneAudio;
@@ -133,6 +152,23 @@ public class GameDirector : MonoBehaviour
         touch_c += 1;
     }
 
+    public IEnumerator show_Word()   //*****
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+        this.GetComponent<Timer>().timeStop = true;
+        wordPanel.SetActive(true);
+        
+
+        wordPanel.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = check_card[0].name;
+        wordPanel.transform.GetChild(1).GetComponent<Image>().sprite = check_card[0];
+        
+        yield return new WaitForSeconds(1.3f);
+        this.GetComponent<Timer>().timeStop = false;
+        wordPanel.SetActive(false);
+        state = STATE.IDLE;
+
+    }
 
 
 }

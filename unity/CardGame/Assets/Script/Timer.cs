@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     public float height;
     public float width;
-
+    public bool timeStop = false;
 
 
     
@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
         height = Camera.main.orthographicSize * 2;
         width = height * Screen.width / Screen.height;
         buildTimer();
+        
 
 
     }
@@ -35,9 +36,11 @@ public class Timer : MonoBehaviour
 
         if (timer.transform.localScale.y > 0 && Time.timeScale == 1)
         {
-           timer.transform.localScale -= new Vector3(0, 0.00005f, 0); // x축 조절로 시간 조절
-           // timer.transform.localScale -= new Vector3(0, 0.0005f, 0); // x축 조절로 시간 조절
-
+            if (timeStop == false)
+            {
+                timer.transform.localScale -= new Vector3(0, 0.00003f, 0); // x축 조절로 시간 조절
+                                                                           // timer.transform.localScale -= new Vector3(0, 0.0005f, 0); // x축 조절로 시간 조절
+            }
         }
         else if(timer.transform.localScale.y <= 0)
         {
@@ -68,7 +71,11 @@ public class Timer : MonoBehaviour
 
         timer.transform.localPosition = new Vector3(0f, 0.2f,0);
         timer.transform.localScale = new Vector2(0.8f, 1f);
+
+        
     }
+
+    
 
 
 
