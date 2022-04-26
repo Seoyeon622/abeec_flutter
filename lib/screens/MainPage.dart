@@ -16,7 +16,19 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("메인 화면"),
       ),
-      body: Center(
+      body: /*SafeArea(
+        child: Column(
+          children:[
+            Container()
+
+
+          ]
+        ),
+
+      )*/
+
+
+      Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
