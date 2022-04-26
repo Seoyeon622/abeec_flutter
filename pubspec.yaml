@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_unity_widget: ^2020.3.25
+  clickable_list_wheel_view: ^0.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -67,8 +68,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/resource/camera_button.png
+     - assets/resource/voca_button.png
+     - assets/resource/game_button.png
+     - assets/resource/setting_button.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

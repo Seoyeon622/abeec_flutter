@@ -5,18 +5,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:clickable_list_wheel_view/measure_size.dart';
+
 import 'Mission.dart';
 
 class MainPage extends StatelessWidget {
+
+  final _scrollController = FixedExtentScrollController();
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
+      backgroundColor: Color(0xffFAEBD7),
       appBar: AppBar(
         title: Text("메인 화면"),
       ),
-      body: /*SafeArea(
+      body: Container(
+
+        height: 500,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            IconButton(onPressed: () {Get.to(SearchVoca());},
+                iconSize: 100,
+                icon: Image.asset('assets/resource/camera_button.png')),
+            IconButton(onPressed: () {Get.to(MyVoca());},
+                iconSize: 100,
+                icon: Image.asset('assets/resource/voca_button.png')),
+            IconButton(onPressed: () {Get.to(UnityDemoScreen());},
+                iconSize: 100,
+                icon: Image.asset('assets/resource/game_button.png')),
+            IconButton(onPressed: () {Get.to(Mission());},
+                iconSize: 100,
+                icon: Image.asset('assets/resource/setting_button.png'))
+
+          ],
+        ),
+      )
+
+
+
+
+      /*SafeArea(
         child: Column(
           children:[
             Container()
@@ -28,7 +60,7 @@ class MainPage extends StatelessWidget {
       )*/
 
 
-      Center(
+      /*Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -46,7 +78,7 @@ class MainPage extends StatelessWidget {
                 child: Text("미션")),
           ],
         ),
-      ),
+      ),*/
     );
   }
 }
