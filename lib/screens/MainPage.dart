@@ -11,56 +11,67 @@ import 'package:clickable_list_wheel_view/measure_size.dart';
 import 'Mission.dart';
 
 class MainPage extends StatelessWidget {
-
   final _scrollController = FixedExtentScrollController();
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
-      backgroundColor: Color(0xffFAEBD7),
-      appBar: AppBar(
-        title: Text("메인 화면"),
-      ),
-      body: Container(
+        backgroundColor: Colors.yellow,
+        body: SafeArea(
+          child: Column(children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
+              //color: Colors.yellow,
+              height: 300,
+              child: Center(
+                  child: Image.asset('assets/resource/logo.png',
+                      width: 600, height: 400)),
+              /*padding : EdgeInsets.all(20),
+          child:Image.asset('assets/resource/logo.png')*/
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              color: Colors.white,
+              height: 325,
+            )
+          ]),
+        ));
+  }
+}
 
-        height: 500,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            IconButton(onPressed: () {Get.to(SearchVoca());},
-                iconSize: 100,
-                icon: Image.asset('assets/resource/camera_button.png')),
-            IconButton(onPressed: () {Get.to(MyVoca());},
-                iconSize: 100,
-                icon: Image.asset('assets/resource/voca_button.png')),
-            IconButton(onPressed: () {Get.to(UnityDemoScreen());},
-                iconSize: 100,
-                icon: Image.asset('assets/resource/game_button.png')),
-            IconButton(onPressed: () {Get.to(Mission());},
-                iconSize: 100,
-                icon: Image.asset('assets/resource/setting_button.png'))
-
-          ],
-        ),
-      )
-
-
-
-
-      /*SafeArea(
-        child: Column(
-          children:[
-            Container()
-
-
-          ]
-        ),
-
-      )*/
-
-
-      /*Center(
+/*Container(
+                child: ListView(scrollDirection: Axis.horizontal, children: [
+              IconButton(
+                  onPressed: () {
+                    Get.to(SearchVoca());
+                  },
+                  iconSize: 100,
+                  icon: Image.asset('assets/resource/camera_button.png')),
+              IconButton(
+                  onPressed: () {
+                    Get.to(MyVoca());
+                  },
+                  iconSize: 100,
+                  icon: Image.asset('assets/resource/voca_button.png')),
+              IconButton(
+                  onPressed: () {
+                    Get.to(UnityDemoScreen());
+                  },
+                  iconSize: 100,
+                  icon: Image.asset('assets/resource/game_button.png')),
+              IconButton(
+                  onPressed: () {
+                    Get.to(Mission());
+                  },
+                  iconSize: 100,
+                  icon: Image.asset('assets/resource/setting_button.png')),
+              IconButton(
+                  onPressed: () {},
+                  iconSize: 100,
+                  icon: Image.asset('assets/resource/setting_button.png'))
+            ]))*/
+/*Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -79,6 +90,3 @@ class MainPage extends StatelessWidget {
           ],
         ),
       ),*/
-    );
-  }
-}
