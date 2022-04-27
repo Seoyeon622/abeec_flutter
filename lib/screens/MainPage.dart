@@ -13,70 +13,95 @@ import 'Mission.dart';
 class MainPage extends StatelessWidget {
   final _scrollController = FixedExtentScrollController();
 
+  double i_Size = 120;
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Color(0xffF8E77F),
         body: SafeArea(
           child: Column(children: [
             Container(
-              margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
-              //color: Colors.yellow,
+              margin: EdgeInsets.fromLTRB(0,20, 0, 0),
+
               width: 400,
-              height: 300,
+              height: 200,
+              child: Center(
+                  child: Image.asset('assets/resource/bee.png',
+                      )),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0,0, 0, 0),
+              //color: Colors.orange,
+              width: 300,
+              height: 100,
               child: Center(
                   child: Image.asset('assets/resource/logo.png',
-                      width: 600, height: 400)),
+                      width: 400, height: 400)),
               /*padding : EdgeInsets.all(20),
           child:Image.asset('assets/resource/logo.png')*/
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                border:Border.all(color:Colors.black,width:3)
+              ),
+              margin: EdgeInsets.fromLTRB(20, 30, 20, 0),
+
               width: 400,
               height: 300,
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
                   Positioned(
-                    top: 20,
+                    top: 25,
                     child: IconButton(
+                      splashColor: Colors.orange,
                         onPressed: () {
                           Get.to(SearchVoca());
                         },
-                        iconSize: 100,
-                        icon: Image.asset('assets/resource/camera_button.png')),
+                        iconSize: i_Size,
+                        icon: Image.asset('assets/resource/camera.png')),
                   ),
                   Positioned(
-                    top: 100,
-                    left: 170,
+                    top: 85,
+                    left: 210,
                     child: IconButton(
                         onPressed: () {
                           Get.to(MyVoca());
                         },
-                        iconSize: 100,
-                        icon: Image.asset('assets/resource/voca_button.png')),
+                        iconSize: i_Size,
+                        icon: Image.asset('assets/resource/voca.png')),
                   ),
                   Positioned(
-                    top: 100,
-                    right: 170,
+                    top: 85,
+                    right: 210,
                     child: IconButton(
                         onPressed: () {
                           Get.to(Mission());
                         },
-                        iconSize: 100,
+                        iconSize: i_Size,
                         icon:
-                            Image.asset('assets/resource/setting_button.png')),
+                            Image.asset('assets/resource/user.png')),
                   ),
                   Positioned(
+                    /*child: InkWell(
+                      child: Image.asset(('assets/resource/game.png'),width: 130,height: 130),
+                      onTap: (){},
+                      splashColor: Colors.black,
+                    ),
+                      top: 210*/
+
+
                     child: IconButton(
                           onPressed: () {
                             Get.to(UnityDemoScreen());
                           },
-                          iconSize: 100,
-                          icon: Image.asset('assets/resource/game_button.png')),
-                    top: 180,
+                          iconSize: i_Size,
+                          icon: Image.asset('assets/resource/game.png')),
+                    top: 145,
                   )
                 ],
               ),
@@ -85,54 +110,3 @@ class MainPage extends StatelessWidget {
         ));
   }
 }
-
-/*Container(
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-              IconButton(
-                  onPressed: () {
-                    Get.to(SearchVoca());
-                  },
-                  iconSize: 100,
-                  icon: Image.asset('assets/resource/camera_button.png')),
-              IconButton(
-                  onPressed: () {
-                    Get.to(MyVoca());
-                  },
-                  iconSize: 100,
-                  icon: Image.asset('assets/resource/voca_button.png')),
-              IconButton(
-                  onPressed: () {
-                    Get.to(UnityDemoScreen());
-                  },
-                  iconSize: 100,
-                  icon: Image.asset('assets/resource/game_button.png')),
-              IconButton(
-                  onPressed: () {
-                    Get.to(Mission());
-                  },
-                  iconSize: 100,
-                  icon: Image.asset('assets/resource/setting_button.png')),
-              IconButton(
-                  onPressed: () {},
-                  iconSize: 100,
-                  icon: Image.asset('assets/resource/setting_button.png'))
-            ]))*/
-/*Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                onPressed: () {Get.to(SearchVoca());},
-                child: Text("단어찾기")),
-            ElevatedButton(
-                onPressed: () {Get.to(MyVoca());},
-                child: Text("내 단어장")),
-            ElevatedButton(
-                onPressed: () {Get.to(UnityDemoScreen());},
-                child: Text("미니게임")),
-            ElevatedButton(
-                onPressed: () {Get.to(Mission());},
-                child: Text("미션")),
-          ],
-        ),
-      ),*/
