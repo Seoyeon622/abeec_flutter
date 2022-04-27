@@ -46,7 +46,7 @@ class MainPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(50),
-                border:Border.all(color:Colors.black,width:3)
+                border:Border.all(color:Colors.orangeAccent,width:7)
               ),
               margin: EdgeInsets.fromLTRB(20, 30, 20, 0),
 
@@ -56,7 +56,7 @@ class MainPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 children: [
                   Positioned(
-                    top: 25,
+                    top: 18,
                     child: IconButton(
                       splashColor: Colors.orange,
                         onPressed: () {
@@ -66,8 +66,8 @@ class MainPage extends StatelessWidget {
                         icon: Image.asset('assets/resource/camera.png')),
                   ),
                   Positioned(
-                    top: 85,
-                    left: 210,
+                    top: 78,
+                    left: 205,
                     child: IconButton(
                         onPressed: () {
                           Get.to(MyVoca());
@@ -76,8 +76,8 @@ class MainPage extends StatelessWidget {
                         icon: Image.asset('assets/resource/voca.png')),
                   ),
                   Positioned(
-                    top: 85,
-                    right: 210,
+                    top: 78,
+                    right: 205,
                     child: IconButton(
                         onPressed: () {
                           Get.to(Mission());
@@ -101,7 +101,7 @@ class MainPage extends StatelessWidget {
                           },
                           iconSize: i_Size,
                           icon: Image.asset('assets/resource/game.png')),
-                    top: 145,
+                    top: 138,
                   )
                 ],
               ),

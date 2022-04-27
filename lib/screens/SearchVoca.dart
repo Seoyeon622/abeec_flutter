@@ -13,14 +13,11 @@ import '../models/CameraMissionDB.dart';
 import 'Mission.dart';
 
 class SearchVoca extends StatefulWidget {
-
   @override
   _SearchVocaState createState() => _SearchVocaState();
 }
 
-
 class _SearchVocaState extends State<SearchVoca> {
-
   final ImagePicker _picker = ImagePicker();
   File? image;
 
@@ -35,7 +32,6 @@ class _SearchVocaState extends State<SearchVoca> {
       setState(() {
         this.image = imageTemporary;
       });
-
     } on PlatformException catch (e) {
       print("$e");
     }
@@ -48,16 +44,17 @@ class _SearchVocaState extends State<SearchVoca> {
     print("~~~~~~~~~~~~~~");
     print(base64Image);
     print("~~~~~~~~~~~~~~");
-    Uri url = Uri.parse('http://54.157.224.91:5000/duplication'); //https 쓰면 handshake exception 에러 발생
+    Uri url = Uri.parse(
+        'http://54.157.224.91:5000/duplication'); //https 쓰면 handshake exception 에러 발생
     http.Response response = await http.post(
       url,
-      headers: <String, String> {
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode({
         'image': '$base64Image',
-        'id': 'yoojin'   // 전역변수  id 넣어주기
-        }),
+        'id': 'yoojin' // 전역변수  id 넣어주기
+      }),
     );
     var responseBody = utf8.decode(response.bodyBytes);
     print("===========");
@@ -67,53 +64,83 @@ class _SearchVocaState extends State<SearchVoca> {
     String ponse = responseBody.toString();
     res = jsonDecode(ponse);
 
-    if(res['duplicate'] == "yes")
+    if (res['duplicate'] == "yes")
       return await ShowDialog(res['id'].toString());
     //return await ShowDialog(res['id'].toString(),base64Image);
-    else {// duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
+    else {
+      // duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
       //Mission().createDBCamera().then((r){
-        //    Mission().cameraUpdate(r, res['english']);
-          //});
-        CameraMissionDB().cameraUpdate(res['english']);
-        return await Get.to(() => VocaDetail(), arguments: res);
+      //    Mission().cameraUpdate(r, res['english']);
+      //});
+      CameraMissionDB().cameraUpdate(res['english']);
+      return await Get.to(() => VocaDetail(), arguments: res);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("단어찾기 화면"),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(32),
+        backgroundColor: Color(0xffF8E77F),
+        body: SafeArea(
+
+      child: Center(
         child: Column(
           children: [
-            const SizedBox(height: 20,),
-           Text("ABeeC", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-            Spacer(),
-            image != null ? Image.file(image!,
-              width: 280, height: 280, fit: BoxFit.cover,) : FlutterLogo(size: 280),
-            const SizedBox(height: 48,),
+            image != null
+                ? Container(
+              margin: EdgeInsets.only(top: 100),
+                width: 330,
+                height: 330,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    border:Border.all(color:Colors.orangeAccent,width:7)),
+                    //padding: EdgeInsets.only(top: 100),
+                    child: Image.file(
+                      image!,
+                      width: 300,
+                      height: 300,
+                      //fit: BoxFit.cover,
+                    ))
+                : Container(
+                width: 280,
+                height: 280,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    border:Border.all(color:Colors.orangeAccent,width:7)),
+                    padding: EdgeInsets.only(top: 100),
+                    child: FlutterLogo(size: 280,)),
+
+
             ElevatedButton(
-              onPressed: () {pickImage();},
+              onPressed: () {
+                pickImage();
+              },
               child: const Text("사진 찍기"),
               style: ElevatedButton.styleFrom(primary: Colors.amber.shade300),
             ),
             ElevatedButton(
-              onPressed: () {uploadImage();},
+              onPressed: () {
+                uploadImage();
+              },
               child: const Text("단어 찾기"),
               style: ElevatedButton.styleFrom(primary: Colors.amber.shade300),
             ),
             //ElevatedButton(onPressed: () {ShowDialog();}, child: Text("체크체크")),
-            ElevatedButton(onPressed: () {Get.to(() => VocaDetail(), arguments: res);}, child: Text("결과 보기"),),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(() => VocaDetail(), arguments: res);
+              },
+              child: Text("결과 보기"),
+            ),
             Spacer(),
           ],
         ),
       ),
-    );
+    ));
   }
+
 //ShowDialog(String id,String base64Image) {
   ShowDialog(String id) {
     showDialog(
@@ -121,8 +148,8 @@ class _SearchVocaState extends State<SearchVoca> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             title: Column(
               children: <Widget>[
                 new Text("중복 확인"),
@@ -137,19 +164,28 @@ class _SearchVocaState extends State<SearchVoca> {
               ],
             ),
             actions: <Widget>[
-              TextButton(onPressed: () {ifDuplicate();}, child: Text("YES")),
+              TextButton(
+                  onPressed: () {
+                    ifDuplicate();
+                  },
+                  child: Text("YES")),
               //TextButton(onPressed:() {ifDuplicate(id,base64Image);},child:Text("YES")),
-              TextButton(onPressed: () {Get.to(() => VocaDetail(), arguments: res);}, child: Text("NO")),
+              TextButton(
+                  onPressed: () {
+                    Get.to(() => VocaDetail(), arguments: res);
+                  },
+                  child: Text("NO")),
             ],
           );
         });
   }
+
 //ifDuplicate(String id,String base64Image) async {
   ifDuplicate() async {
     Uri url = Uri.parse('http://54.157.224.91:5000/dbinsert');
     http.Response response = await http.post(
       url,
-      headers: <String, String> {
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode({'response': 'yes'}),
@@ -159,8 +195,6 @@ class _SearchVocaState extends State<SearchVoca> {
     print(response.body);
     print("------------");
   }
-
-
 }
 
 // 서버에서 해당 my_voca table id 값으로 image 부분 갱신 & 해당 image 서버에 저장
