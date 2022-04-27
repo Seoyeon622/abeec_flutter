@@ -23,6 +23,7 @@ class MainPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
               //color: Colors.yellow,
+              width: 400,
               height: 300,
               child: Center(
                   child: Image.asset('assets/resource/logo.png',
@@ -33,7 +34,52 @@ class MainPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               color: Colors.white,
-              height: 325,
+              width: 400,
+              height: 300,
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Positioned(
+                    top: 20,
+                    child: IconButton(
+                        onPressed: () {
+                          Get.to(SearchVoca());
+                        },
+                        iconSize: 100,
+                        icon: Image.asset('assets/resource/camera_button.png')),
+                  ),
+                  Positioned(
+                    top: 100,
+                    left: 170,
+                    child: IconButton(
+                        onPressed: () {
+                          Get.to(MyVoca());
+                        },
+                        iconSize: 100,
+                        icon: Image.asset('assets/resource/voca_button.png')),
+                  ),
+                  Positioned(
+                    top: 100,
+                    right: 170,
+                    child: IconButton(
+                        onPressed: () {
+                          Get.to(Mission());
+                        },
+                        iconSize: 100,
+                        icon:
+                            Image.asset('assets/resource/setting_button.png')),
+                  ),
+                  Positioned(
+                    child: IconButton(
+                          onPressed: () {
+                            Get.to(UnityDemoScreen());
+                          },
+                          iconSize: 100,
+                          icon: Image.asset('assets/resource/game_button.png')),
+                    top: 180,
+                  )
+                ],
+              ),
             )
           ]),
         ));
