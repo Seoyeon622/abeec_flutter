@@ -60,8 +60,9 @@ class _SearchVocaState extends State<SearchVoca> {
       },
       body: jsonEncode({
         'image': '$base64Image',
-        'id': 'yoojin' // 전역변수  id 넣어주기
-      }),
+
+        'id': 'yoojinjangjang'   // 전역변수  id 넣어주기
+        }),
     );
     var responseBody = utf8.decode(response.bodyBytes);
     print("===========");

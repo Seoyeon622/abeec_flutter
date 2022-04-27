@@ -72,59 +72,9 @@ class Mission extends StatefulWidget{
   @override
   _MissionState createState() => _MissionState();
 
-
-  getMission() async{
-
-    String url = "http://54.157.224.91:8080/abeec/mission/" + "yoojin"; // {id} 부분 붙여주기
-    print(url);
-    Uri uri = Uri.parse(url);
-    var response = await http.get(uri);
-    var responseBody = utf8.decode(response.bodyBytes);
-    //print(responseBody);
-    String res = responseBody.toString();
-    var responseJson  = jsonDecode(res);
-
-    print("camera : " + responseJson['camera'].toString());
-    List<String> camera = List<String>.from(responseJson['camera']); // camera 리스트
-
-    print("listening : " + responseJson['listening'].toString());
-    List<String> listening = List<String>.from(responseJson['listening']); //listening 리스트
-
-
-    //기존에 저장된 데이터베이스와 동일한지 검사하여 동일한 경우 해당 데이터베이스를 유지해준다.
-    var before = await CameraMissionDB().cameras();
-    int i = 0;
-    for (var element in before) {
-      if(element.english.toString() != camera[i]){  // 이전 내용에서 갱신 된 경우에
-        print(element.english.toString() + " : " + camera[i]);
-
-        await CameraMissionDB().deleteAllCameras();
-        await ListeningMissionDB().deleteAllListening();
-
-        // 데이터베이스에 추가하는 부분 작성
-        for (var i in camera) {
-          CameraMission camera = CameraMission(
-            english: i,
-            completed: 0,
-          );
-          await CameraMissionDB().insertCameraMission(camera);
-        }
-        for (var i in listening) {
-          ListeningMission listeningMission = ListeningMission(
-            english: i,
-            count: 0,
-          );
-          await ListeningMissionDB().insertListeningMission(listeningMission);
-        }
-        break;
-      }
-
-      i++;
-    }
-
+  getMissions() async{
+    await _MissionState().getMission();
   }
-
-
 
 }
 
@@ -136,19 +86,96 @@ class _MissionState extends State<Mission>{
 
   List<CameraMission> cameraList = List.filled(7, CameraMission(english:'',completed: 0));
   List<ListeningMission> listeningList = List.filled(3, ListeningMission(english: '',count: 0));
+  List<String> camera = List.filled(7, '');
 
+  CameraMissionDB cameraMissionDB = CameraMissionDB();
+  ListeningMissionDB listeningMissionDB = ListeningMissionDB();
+
+  getMission() async{
+
+    String url = "http://54.157.224.91:8080/abeec/mission/" + "yoojinjangjang"; // {id} 부분 붙여주기
+    print(url);
+    Uri uri = Uri.parse(url);
+    var response = await http.get(uri);
+    var responseBody = utf8.decode(response.bodyBytes);
+    //print(responseBody);
+    String res = responseBody.toString();
+    var responseJson  = jsonDecode(res);
+
+    print("camera : " + responseJson['camera'].toString());
+     camera = List<String>.from(responseJson['camera']); // camera 리스트
+
+    print("listening : " + responseJson['listening'].toString());
+    List<String> listening = List<String>.from(responseJson['listening']); //listening 리스트
+
+    // 데이터베이스에 추가하는 부분 작성
+    // for (var i in camera) {
+    // CameraMission camera = CameraMission(
+    // english: i,
+    // completed: 0,
+    // );
+    // await cameraMissionDB.insertCameraMission(camera);
+    // }
+    // for (var i in listening) {
+    // ListeningMission listeningMission = ListeningMission(
+    // english: i,
+    // count: 0,
+    // );
+    // await listeningMissionDB.insertListeningMission(listeningMission);
+    // }
+    //기존에 저장된 데이터베이스와 동일한지 검사하여 동일한 경우 해당 데이터베이스를 유지해준다.
+    var before = await cameraMissionDB.cameras();
+    int i = 0;
+
+    for (var element in before) {
+      if(element.english.toString() != camera[i]){  // 이전 내용에서 갱신 된 경우에
+        print(element.english.toString() + " : " + camera[i]);
+
+        await cameraMissionDB.deleteAllCameras();
+        await listeningMissionDB.deleteAllListening();
+
+        // 데이터베이스에 추가하는 부분 작성
+        for (var i in camera) {
+          CameraMission camera = CameraMission(
+            english: i,
+            completed: 0,
+          );
+          await cameraMissionDB.insertCameraMission(camera);
+        }
+        for (var i in listening) {
+          ListeningMission listeningMission = ListeningMission(
+            english: i,
+            count: 0,
+          );
+          await listeningMissionDB.insertListeningMission(listeningMission);
+        }
+        break;
+      }
+
+      i++;
+    }
+    setState(() {
+      getDB();
+    });
+
+
+  }
   getDB() async{
 
-    cameraList = await CameraMissionDB().cameras();
-    print(cameraList.toString());
-    listeningList = await ListeningMissionDB().listenings();
-    print(listeningList.toString());
-    if(listeningList.length<3){
-      listeningList = List.filled(3, ListeningMission(english: '',count: 0));
+    List<CameraMission> cameraLists = await cameraMissionDB.cameras();
+    print(cameraLists.toString());
+    if(cameraLists.length<7){
+      cameraLists = List.filled(7, CameraMission(english: '',completed: 0));
+    }
+    List<ListeningMission> listeningLists = await listeningMissionDB.listenings();
+    print(listeningLists.toString());
+    if(listeningLists.length<3){
+      listeningLists = List.filled(3, ListeningMission(english: '',count: 0));
     }
 
     setState(() {
-
+      cameraList = cameraLists;
+      listeningList = listeningLists;
     });
   }
 
@@ -156,9 +183,17 @@ class _MissionState extends State<Mission>{
   @override
   initState() {
 
-    getDB();
+
+    Future.delayed(Duration.zero,() async {
+      //your async 'await' codes goes here
+      await cameraMissionDB.fixed_camera_database;
+      await listeningMissionDB.fixed_listening_database;
+      await getMission();
+      //await getDB();
+    });
 
     super.initState();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -175,11 +210,13 @@ class _MissionState extends State<Mission>{
                     children: <Widget>[
                         SizedBox(height: 10,child : Align(  alignment: Alignment.centerRight,
                             child: IconButton(onPressed: () async {
-                                                  await Mission().getMission();
-                                                  await getDB();
-                                                  setState(() {
-                                                    getDB();});
-                                                  },
+                                                  await getMission();
+                                                  //await getDB();
+                                                   // setState(() {
+                                                   //   getDB();
+                                                   // });
+                                                   },
+
                                     icon: const Icon(Icons.refresh,size:40.0),)) ),
                       const SizedBox(
                           height: 40,

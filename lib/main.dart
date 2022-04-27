@@ -11,15 +11,27 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'models/CameraMission.dart';
+import 'models/CameraMissionDB.dart';
 import 'models/ListeningMission.dart';
+import 'models/ListeningMissionDB.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Mission().getMission(); // 초기 앱 실행 시 한번 수행 --> 서버에서 해당 미션 리스트 받아옴 (모바일저장)
+  await CameraMissionDB().fixed_camera_database;
+  await ListeningMissionDB().fixed_listening_database;
+  await CameraMissionDB().deleteAllCameras();
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
 
-  Timer(const Duration(seconds: 2), () {
-    runApp(MyApp());
-  });
+   Timer(const Duration(seconds: 2), () {
+  runApp(MyApp());
+   });
+
   //runApp(MyApp());
 
   //Timer.periodic(Duration(seconds:30), (timer) {
