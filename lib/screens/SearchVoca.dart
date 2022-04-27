@@ -21,6 +21,13 @@ class _SearchVocaState extends State<SearchVoca> {
   final ImagePicker _picker = ImagePicker();
   File? image;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pickImage();
+  }
+
   final _model = VocaModel();
 
   Future pickImage() async {
@@ -82,63 +89,166 @@ class _SearchVocaState extends State<SearchVoca> {
     return Scaffold(
         backgroundColor: Color(0xffF8E77F),
         body: SafeArea(
-
-      child: Center(
-        child: Column(
-          children: [
-            image != null
-                ? Container(
-              margin: EdgeInsets.only(top: 100),
-                width: 330,
-                height: 330,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    border:Border.all(color:Colors.orangeAccent,width:7)),
-                    //padding: EdgeInsets.only(top: 100),
-                    child: Image.file(
-                      image!,
-                      width: 300,
-                      height: 300,
-                      //fit: BoxFit.cover,
-                    ))
-                : Container(
-                width: 280,
-                height: 280,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    border:Border.all(color:Colors.orangeAccent,width:7)),
-                    padding: EdgeInsets.only(top: 100),
-                    child: FlutterLogo(size: 280,)),
-
-
-            ElevatedButton(
-              onPressed: () {
-                pickImage();
-              },
-              child: const Text("사진 찍기"),
-              style: ElevatedButton.styleFrom(primary: Colors.amber.shade300),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                uploadImage();
-              },
-              child: const Text("단어 찾기"),
-              style: ElevatedButton.styleFrom(primary: Colors.amber.shade300),
-            ),
-            //ElevatedButton(onPressed: () {ShowDialog();}, child: Text("체크체크")),
-            ElevatedButton(
-              onPressed: () {
-                Get.to(() => VocaDetail(), arguments: res);
-              },
-              child: Text("결과 보기"),
-            ),
-            Spacer(),
-          ],
-        ),
-      ),
-    ));
+          child: Column(
+            children: [
+              Container(
+                height: 500,
+                //color: Colors.white,
+                child: Stack(alignment: Alignment.topCenter, children: [
+                  Positioned(
+                      child: Image.asset(
+                    'assets/resource/liquid_honey.png',
+                    fit: BoxFit.fitWidth,
+                  )),
+                  image != null
+                      ? Positioned(
+                          top: 150,
+                          child: Container(
+                              width: 330,
+                              height: 330,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                      color: Colors.orangeAccent, width: 7)),
+                              //padding: EdgeInsets.only(top: 100),
+                              child: Image.file(
+                                image!,
+                                width: 300,
+                                height: 300,
+                                //fit: BoxFit.cover,
+                              )))
+                      : Positioned(
+                          top: 150,
+                          child: Container(
+                              width: 330,
+                              height: 330,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                      color: Colors.orangeAccent, width: 7)),
+                              child: FlutterLogo(
+                                size: 280,
+                              )),
+                        )
+                ]),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                //color: Colors.white,
+                height: 150,
+                child:
+                    ButtonBar(alignment: MainAxisAlignment.center, children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      pickImage();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xffFEE134),
+                      onPrimary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 25),
+                      side: BorderSide(width: 4, color: Colors.orangeAccent),
+                      elevation: 10,
+                      fixedSize: Size(120, 120),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.arrow_back,size: 50,),
+                        Text(
+                          "다시 찍기",
+                          style: TextStyle(fontFamily: 'DoHyeonRegular'),
+                        )
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      pickImage();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xffFEE134),
+                      onPrimary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 25),
+                      fixedSize: Size(120, 120),
+                      elevation: 10,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search,size: 50),
+                        Text(
+                          "뭘까용?",
+                          style: TextStyle(fontFamily: 'DoHyeonRegular'),
+                        )
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => VocaDetail(), arguments: res);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xffFEE134),
+                      onPrimary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 25),
+                      fixedSize: Size(120, 120),
+                      elevation: 10,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search,size: 50),
+                        Text(
+                          "결과",
+                          style: TextStyle(fontFamily: 'DoHyeonRegular'),
+                        )
+                      ],
+                    ),
+                  ),
+                ]),
+              )
+              /*child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      pickImage();
+                    },
+                    child: const Text("사진 찍기"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.amber.shade300),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      uploadImage();
+                    },
+                    child: const Text("단어 찾기"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.amber.shade300),
+                  ),
+//ElevatedButton(onPressed: () {ShowDialog();}, child: Text("체크체크")),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => VocaDetail(), arguments: res);
+                    },
+                    child: Text("결과 보기"),
+                  )
+                ],
+              )
+              )*/
+            ],
+          ),
+        ));
   }
 
 //ShowDialog(String id,String base64Image) {
@@ -198,3 +308,34 @@ class _SearchVocaState extends State<SearchVoca> {
 }
 
 // 서버에서 해당 my_voca table id 값으로 image 부분 갱신 & 해당 image 서버에 저장
+
+/*
+Container(
+child: Column(
+children: [
+ElevatedButton(
+onPressed: () {
+pickImage();
+},
+child: const Text("사진 찍기"),
+style:
+ElevatedButton.styleFrom(primary: Colors.amber.shade300),
+),
+ElevatedButton(
+onPressed: () {
+uploadImage();
+},
+child: const Text("단어 찾기"),
+style:
+ElevatedButton.styleFrom(primary: Colors.amber.shade300),
+),
+//ElevatedButton(onPressed: () {ShowDialog();}, child: Text("체크체크")),
+ElevatedButton(
+onPressed: () {
+Get.to(() => VocaDetail(), arguments: res);
+},
+child: Text("결과 보기"),
+)
+],
+)
+)*/
