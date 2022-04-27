@@ -20,6 +20,8 @@ class MainPage extends StatelessWidget {
         backgroundColor: Colors.yellow,
         body: SafeArea(
           child: Column(children: [
+            ElevatedButton(onPressed: () {Get.to(() => Mission());}, child: Text("미션"),),
+            ElevatedButton(onPressed: () {Get.to(() => SearchVoca());}, child: Text("미션"),),
             Container(
               margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
               //color: Colors.yellow,

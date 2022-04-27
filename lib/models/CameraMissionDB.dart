@@ -9,7 +9,7 @@ class CameraMissionDB{
   Future<Database> get fixed_camera_database async {
     if(_fixed_camera_database != null) return _fixed_camera_database;
 
-    _fixed_camera_database = openDatabase( // db 생성
+    _fixed_camera_database = await openDatabase( // db 생성
       join(await getDatabasesPath(),'camera_mission.db'),
       onCreate: (db,version){
         return db.execute(

@@ -9,7 +9,7 @@ class ListeningMissionDB{
   Future<Database> get fixed_listening_database async {
     if(_fixed_listening_database != null) return _fixed_listening_database;
 
-    _fixed_listening_database = openDatabase( // db 생성
+    _fixed_listening_database = await openDatabase( // db 생성
       join(await getDatabasesPath(),'listening_mission.db'),
       onCreate: (db,version){
         return db.execute(
