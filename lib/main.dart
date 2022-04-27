@@ -13,11 +13,18 @@ import 'package:http/http.dart' as http;
 import 'models/CameraMission.dart';
 import 'models/ListeningMission.dart';
 
-void main() {
-  runApp(MyApp());
-  Timer.periodic(Duration(seconds:15), (timer) {
-      Mission().getMission();  // 15초마다 한번씩 갱신
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Mission().getMission(); // 초기 앱 실행 시 한번 수행 --> 서버에서 해당 미션 리스트 받아옴 (모바일저장)
+
+  Timer(const Duration(seconds: 2), () {
+    runApp(MyApp());
   });
+  //runApp(MyApp());
+
+  //Timer.periodic(Duration(seconds:30), (timer) {
+    //  Mission().getMission();  //
+  //});
   HttpOverrides.global = new MyHttpOverrides();
 }
 
