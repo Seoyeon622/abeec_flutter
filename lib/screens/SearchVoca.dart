@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/CameraMissionDB.dart';
+import 'Mission.dart';
+
 class SearchVoca extends StatefulWidget {
 
   @override
@@ -53,7 +56,7 @@ class _SearchVocaState extends State<SearchVoca> {
       },
       body: jsonEncode({
         'image': '$base64Image',
-        'id': 'abeec'
+        'id': 'yoojin'   // 전역변수  id 넣어주기
         }),
     );
     var responseBody = utf8.decode(response.bodyBytes);
@@ -67,8 +70,13 @@ class _SearchVocaState extends State<SearchVoca> {
     if(res['duplicate'] == "yes")
       return await ShowDialog(res['id'].toString());
     //return await ShowDialog(res['id'].toString(),base64Image);
-    else
-      return await Get.to(() => VocaDetail(), arguments: res);
+    else {// duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
+      //Mission().createDBCamera().then((r){
+        //    Mission().cameraUpdate(r, res['english']);
+          //});
+        CameraMissionDB().cameraUpdate(res['english']);
+        return await Get.to(() => VocaDetail(), arguments: res);
+    }
   }
 
 

@@ -9,7 +9,7 @@ class VocaDetail extends StatefulWidget {
 
   var res = Get.arguments;
 
-
+  // 해당 화면에서 듣기 부분을 작성하고 들을 경우 listening_mission 테이블의 english와 비교하여 있는 경우 count를 1 증가 시키기
 class _VocaDetailState extends State<VocaDetail> {
   @override
   Widget build(BuildContext context) {

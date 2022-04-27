@@ -22,6 +22,10 @@ class CameraMission{
   String toString() {
     return 'CameraMission{english: $english, completed: $completed}';
   }
+
+
+
+
 }
 
 
