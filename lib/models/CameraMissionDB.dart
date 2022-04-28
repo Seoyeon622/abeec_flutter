@@ -51,12 +51,28 @@ class CameraMissionDB{
       english: english,
       completed: 1,
     );
-    await db.update('camera_mission',camera.toMap(),where:'english=?',whereArgs:[camera.english]);
+    int result = await db.update('camera_mission',camera.toMap(),where:'english=?',whereArgs:[camera.english]);
+    // result - 변경된 row 갯수
+    //if(result!=0){
+    // 점수를 올리는 함수
+    // }
+
   }
 
   deleteAllCameras() async {  // db 삭제
     final db = await fixed_camera_database;
     db.rawDelete('DELETE FROM camera_mission');
+  }
+
+  init() async{
+    await CameraMissionDB().deleteAllCameras();
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+    await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
   }
 
 }

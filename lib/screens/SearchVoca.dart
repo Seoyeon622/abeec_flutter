@@ -10,6 +10,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/CameraMissionDB.dart';
+import '../models/voca.dart';
+import '../models/voca_db.dart';
 import 'Mission.dart';
 
 class SearchVoca extends StatefulWidget {
@@ -23,7 +25,6 @@ class _SearchVocaState extends State<SearchVoca> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pickImage();
   }
@@ -80,6 +81,11 @@ class _SearchVocaState extends State<SearchVoca> {
       //Mission().createDBCamera().then((r){
       //    Mission().cameraUpdate(r, res['english']);
       //});
+      Voca voca = Voca(english:res['english'].toString(),korean: res['korean'].toString());
+      voca_db().insertListeningMission(voca);
+      voca_db().vocas().then((r){
+        print(r.toString());
+      });
       CameraMissionDB().cameraUpdate(res['english']);
       return await Get.to(() => VocaDetail(), arguments: res);
     }
@@ -92,6 +98,7 @@ class _SearchVocaState extends State<SearchVoca> {
         body: SafeArea(
           child: Column(
             children: [
+
               Container(
                 height: 500,
                 //color: Colors.white,
@@ -129,8 +136,10 @@ class _SearchVocaState extends State<SearchVoca> {
                                   borderRadius: BorderRadius.circular(50),
                                   border: Border.all(
                                       color: Colors.orangeAccent, width: 7)),
-                              child: FlutterLogo(
-                                size: 280,
+                              child: const Icon(
+                                Icons.photo_camera,
+                                size: 200.0,
+                                color: Colors.amberAccent,
                               )),
                         )
                 ]),
@@ -169,7 +178,10 @@ class _SearchVocaState extends State<SearchVoca> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      pickImage();
+                      (){if(image!=null){
+                      uploadImage();
+                      }}();
+
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xffFEE134),
@@ -183,7 +195,7 @@ class _SearchVocaState extends State<SearchVoca> {
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Icon(Icons.search,size: 50),
                         Text(
                           "뭘까용?",
@@ -194,21 +206,23 @@ class _SearchVocaState extends State<SearchVoca> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(() => VocaDetail(), arguments: res);
+                      (){if(res!=null && image!=null){
+                        Get.to(() => VocaDetail(), arguments: res);
+                      }}();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xffFEE134),
+                      primary: const Color(0xffFEE134),
                       onPrimary: Colors.black,
                       textStyle: const TextStyle(fontSize: 25),
-                      fixedSize: Size(120, 120),
+                      fixedSize: const Size(120, 120),
                       elevation: 10,
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Icon(Icons.search,size: 50),
                         Text(
                           "결과",

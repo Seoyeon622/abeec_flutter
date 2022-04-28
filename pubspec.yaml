@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_tts :
   flutter_unity_widget: ^2020.3.25
   clickable_list_wheel_view: ^0.0.4
 
@@ -77,6 +79,7 @@ flutter:
      - assets/resource/voca.png
      - assets/resource/bee.png
      - assets/resource/liquid_honey.png
+     - assets/images/
 
 
   #   - images/a_dot_ham.jpeg

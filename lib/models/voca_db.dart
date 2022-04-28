@@ -3,54 +3,95 @@ import 'dart:io';
 import 'package:capstone_abeec/models/voca.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+class voca_db {
+  var _fixed_voca_database;
 
+  Future<Database> get fixed_voca_database async {
+    if(_fixed_voca_database != null) return _fixed_voca_database;
 
-void main() async {
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'my_voca_database.db'),
-    onCreate: (db, version) {
-      return db.execute(
-        "CREATE TABLE my_voca(id INTEGER PRIMARY KEY, english TEXT, korean TEXT)",
-      );
-    },
-    version: 1,
-  );
-
-  Future <void> insertVoca(Voca voca) async {
-    final Database db = await database;
-
-    await db.insert(
-        'my_voca',
-        voca.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
+    _fixed_voca_database = await openDatabase( // db 생성
+      join(await getDatabasesPath(),'my_voca_database.db'),
+      onCreate: (db,version){
+        return db.execute(
+          "CREATE TABLE my_voca_database(english TEXT,korean TEXT)",
+        );
+      },
+      version:1,
     );
+    return _fixed_voca_database;
   }
 
-  Future<List<Voca>> my_voca() async {
-    final Database db = await database;
+  Future<List<Voca>> vocas() async {
+    final db = await fixed_voca_database;
 
-    final List<Map<String, dynamic>> maps = await db.query('my_voca');
-
+    final List<Map<String, dynamic>> maps = await db.query('my_voca_database');
+    //print(maps.length);
     return List.generate(maps.length, (i) {
       return Voca(
-        id: maps[i]['id'],
         english: maps[i]['english'],
         korean: maps[i]['korean'],
       );
     });
   }
 
-  Future<void> updateVoca(Voca voca) async {
-    final db = await database;
+  Future<void> insertListeningMission(Voca voca) async{ // db 삽입
+    final Database db = await fixed_voca_database;
 
-    await db.update(
-        'my_voca',
-        voca.toMap(),
-        where: "id = ?",
-        whereArgs: [voca.id],
+    await db.insert(
+      'my_voca_database',
+      voca.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
+}
+
+// void main() async {
+//   final database = openDatabase(
+//     join(await getDatabasesPath(), 'my_voca_database.db'),
+//     onCreate: (db, version) {
+//       return db.execute(
+//         "CREATE TABLE my_voca(english TEXT, korean TEXT)",
+//       );
+//     },
+//     version: 1,
+//   );
+//
+//   Future <void> insertVoca(Voca voca) async {
+//     final Database db = await database;
+//
+//     await db.insert(
+//       'my_voca',
+//       voca.toMap(),
+//       conflictAlgorithm: ConflictAlgorithm.replace,
+//     );
+//   }
+//
+//   Future<List<Voca>> my_voca() async {
+//     final Database db = await database;
+//
+//     final List<Map<String, dynamic>> maps = await db.query('my_voca');
+//
+//     return List.generate(maps.length, (i) {
+//       return Voca(
+//         id: maps[i]['id'],
+//         english: maps[i]['english'],
+//         korean: maps[i]['korean'],
+//       );
+//     });
+//   }
+//
+//   Future<void> updateVoca(Voca voca) async {
+//     final db = await database;
+//
+//     await db.update(
+//       'my_voca',
+//       voca.toMap(),
+//       where: "id = ?",
+//       whereArgs: [voca.id],
+//     );
+//   }
+// }
   /*
   Future<Voca> getId(String english, String korean) async {
     final Database db = await database;
@@ -64,30 +105,5 @@ void main() async {
    */
 
 
-}
 
-class Voca {
-  final int? id;
-  final String? english;
-  final String? korean;
-
-  Voca({
-    this.id,
-    this.english,
-    this.korean,
-  });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id':id,
-      'english':english,
-      'korean':korean,
-    };
-  }
-
-  @override
-  String toString() {
-    return 'Voca{id: $id, english: $english, korean:$korean}';
-  }
-}
 

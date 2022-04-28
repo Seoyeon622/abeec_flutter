@@ -52,7 +52,14 @@ class ListeningMissionDB{
       english: english,
       count : 1,
     );
-    await db.update('listening_mission', listening.toMap(),where:'english=?',whereArgs: [listening.english]);
+    int result = await db.rawUpdate(
+        'UPDATE listening_mission SET count = count + 1 WHERE english = ?',
+        [english]);
+
+    //if(result != 0){
+    // 점수를 올릴 함수
+    // }
+
   }
 
   deleteAllListening() async {  // db 삭제

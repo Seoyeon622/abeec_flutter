@@ -19,14 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CameraMissionDB().fixed_camera_database;
   await ListeningMissionDB().fixed_listening_database;
-  await CameraMissionDB().deleteAllCameras();
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
-  await CameraMissionDB().insertCameraMission(CameraMission(english: 'apple',completed: 0));
+  await CameraMissionDB().init();
 
    Timer(const Duration(seconds: 2), () {
   runApp(MyApp());
@@ -49,7 +42,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ABeeC',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.amber),
       home: MainPage(),
     );
   }

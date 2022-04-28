@@ -232,7 +232,7 @@ class _MissionState extends State<Mission>{
                         child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                  width: 3,
+                                  width: 4,
                                   color: Colors.orange,
                                 ),
                                 //color: Colors.amberAccent,
@@ -247,7 +247,8 @@ class _MissionState extends State<Mission>{
                                 itemBuilder: (context, i) => Container( // 여기서부터 리스트 요소들 !
                                             decoration: BoxDecoration(
                                               color: Colors.amberAccent,
-                                              borderRadius: BorderRadius.circular(10)
+                                              borderRadius: BorderRadius.circular(10),
+
                                           ),
                                           padding: const EdgeInsets.all(10),
                                           margin: const EdgeInsets.all(5),
@@ -258,8 +259,9 @@ class _MissionState extends State<Mission>{
                                                       else{
                                                         if(i<=6){return cameraList[i].english.toString() + " 촬영하기 ";}
                                                         else{return listeningList[i-7].english.toString() + " 듣기 ";}}}(),
-                                                        style: const TextStyle(fontSize: 20),
-                                                        textAlign: TextAlign.center,),
+                                                        style: const TextStyle(fontSize: 20,),
+                                                        textAlign: TextAlign.center,
+                                                    ),
                                                     Icon((){
                                                       if(cameraList.length == 10) {
                                                         if(cameraList[i].completed==0){return Icons.check_box_outline_blank;}

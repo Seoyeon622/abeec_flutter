@@ -22,6 +22,7 @@ class MainPage extends StatelessWidget {
         backgroundColor: Color(0xffF8E77F),
         body: SafeArea(
           child: Column(children: [
+
             Container(
               margin: EdgeInsets.fromLTRB(0,20, 0, 0),
 
@@ -70,7 +71,7 @@ class MainPage extends StatelessWidget {
                     left: 205,
                     child: IconButton(
                         onPressed: () {
-                          Get.to(MyVoca());
+                          Get.to(MyVocaList());
                         },
                         iconSize: i_Size,
                         icon: Image.asset('assets/resource/voca.png')),

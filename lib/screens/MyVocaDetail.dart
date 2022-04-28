@@ -1,5 +1,7 @@
+import 'package:capstone_abeec/models/ListeningMissionDB.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class VocaDetail extends StatefulWidget {
 
@@ -11,21 +13,62 @@ class VocaDetail extends StatefulWidget {
 
   // 해당 화면에서 듣기 부분을 작성하고 들을 경우 listening_mission 테이블의 english와 비교하여 있는 경우 count를 1 증가 시키기
 class _VocaDetailState extends State<VocaDetail> {
+  final FlutterTts flutterTts = FlutterTts();
+  TextEditingController controller = TextEditingController();
+  String imagePath = "assets/images/"+res['english'].toString() + ".jpg";
+  @override
+  void initState() {
+     controller = TextEditingController(text: res['english']);
+     flutterTts.setLanguage('en');
+     flutterTts.setSpeechRate(0.4);
+
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("단어 상세 화면"),
-      ),
+      backgroundColor: Color(0xffF8E77F),
+      // appBar: AppBar(
+      //   title: Text("단어 상세 화면"),
+      // ),
       body: Center(
+
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(res['english'], style: TextStyle(fontSize: 40),),
-            Text(res['korean'], style: TextStyle(fontSize: 40),),
-            //FloatingActionButton(onPressed: () {}, child: Icon(Icons.headset),),
-            //FloatingActionButton(onPressed: () {}, child: Icon(Icons.notes),),
-          ],
+            const Center(
+                child: Image(image:AssetImage('assets/resource/bee.png'),height: 150.0,)
+            ),
+            Container(
+                margin: EdgeInsets.fromLTRB(0,20, 0, 0),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+                color: Colors.white,
+                width: 350.0,
+              height: 500.0,
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   Image(image:AssetImage(imagePath)),
+                   const SizedBox(height: 35.0,),
+                   Text(res['english'], style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+                   Text(res['korean'], style: TextStyle(fontSize: 38),),
+                  const SizedBox(height: 20.0,),
+                  RawMaterialButton(onPressed: (){
+                    flutterTts.speak(controller.text);
+                    ListeningMissionDB().listeningUpdate(res['english'].toString());
+                    },
+                      fillColor: const Color(0xffF8E77F),
+                      elevation: 2.0,
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Icon(
+                          Icons.volume_up,size:50.0,
+                          color:Colors.white))
+             ] ))],
         ),
       ),
     );
