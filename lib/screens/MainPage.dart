@@ -8,13 +8,38 @@ import 'package:get/get.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:clickable_list_wheel_view/measure_size.dart';
 
+import '../models/loginUser.dart';
+import '../models/loginUserDB.dart';
+import 'JoinPage.dart';
+import 'LoginPage.dart';
 import 'Mission.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   final _scrollController = FixedExtentScrollController();
 
   double i_Size = 120;
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // user 데이터베이스 id가 존재하는지 확인하기 없으면 --> login 화면 있으면 main화면
+    Future.delayed(Duration.zero,() async{
+      loginUser? user = await loginUserDB().user();
+      print("hey " + user.toString());
+      if(user == null || user.user_id==''){
+        // user_id가 빈것이면 아직 로그인이 안된 것
+        Get.to(LoginPage());
+      }
+
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -22,9 +47,21 @@ class MainPage extends StatelessWidget {
         backgroundColor: Color(0xffF8E77F),
         body: SafeArea(
           child: Column(children: [
+            Align(alignment: Alignment.centerRight,
+              child:Container(
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child:IconButton(
+                  onPressed: (){Get.to(JoinPage());},
+                  icon: Icon(Icons.logout,size:25.0),
+                )
+            ),),
 
             Container(
-              margin: EdgeInsets.fromLTRB(0,20, 0, 0),
+              margin: EdgeInsets.fromLTRB(0,0, 0, 0),
 
               width: 400,
               height: 200,

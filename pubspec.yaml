@@ -80,6 +80,7 @@ flutter:
      - assets/resource/bee.png
      - assets/resource/liquid_honey.png
      - assets/images/
+     - assets/resource/
 
 
   #   - images/a_dot_ham.jpeg

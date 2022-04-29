@@ -14,4 +14,16 @@ class UserController extends GetxController {
     print("userID : $userID");
     return u_id;
   }
+
+  Future<String> idCheck(String id) async{
+    String check = await _userRepository.idCheck(id);
+    print(check);
+    return check;
+  }
+
+  Future<int> login(String id,String password) async{
+    int check = await _userRepository.login(id, password);
+    print(check);
+    return check;
+  }
 }

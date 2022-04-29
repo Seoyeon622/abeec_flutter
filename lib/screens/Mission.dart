@@ -67,6 +67,8 @@ import 'dart:convert';
 import '../models/CameraMissionDB.dart';
 import '../models/ListeningMission.dart';
 import '../models/ListeningMissionDB.dart';
+import '../models/loginUser.dart';
+import '../models/loginUserDB.dart';
 
 class Mission extends StatefulWidget{
   @override
@@ -92,8 +94,9 @@ class _MissionState extends State<Mission>{
   ListeningMissionDB listeningMissionDB = ListeningMissionDB();
 
   getMission() async{
+    String name = user?.user_id??"id";
 
-    String url = "http://54.157.224.91:8080/abeec/mission/" + "yoojinjangjang"; // {id} 부분 붙여주기
+    String url = "http://54.157.224.91:8080/abeec/mission/" + name; // {id} 부분 붙여주기
     print(url);
     Uri uri = Uri.parse(url);
     var response = await http.get(uri);
@@ -179,7 +182,9 @@ class _MissionState extends State<Mission>{
     });
   }
 
-
+  loginUser? user = loginUser();
+ // String? userId = '';
+  String level ='0';
   @override
   initState() {
 
@@ -188,8 +193,9 @@ class _MissionState extends State<Mission>{
       //your async 'await' codes goes here
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
+      user = await loginUserDB().user();
       await getMission();
-      //await getDB();
+
     });
 
     super.initState();
@@ -198,6 +204,7 @@ class _MissionState extends State<Mission>{
   @override
   Widget build(BuildContext context) {
 
+    level = user?.level.toString()??"0";
 
 
     return MaterialApp(
@@ -208,6 +215,7 @@ class _MissionState extends State<Mission>{
 
                     child: Column(
                     children: <Widget>[
+
                         SizedBox(height: 10,child : Align(  alignment: Alignment.centerRight,
                             child: IconButton(onPressed: () async {
                                                   await getMission();
@@ -289,16 +297,21 @@ class _MissionState extends State<Mission>{
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //const SizedBox(height: 10,),
-                            const Text("ID 들어갈 부분",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+                            Text(user?.user_id??'id',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,), // 여기에 이름 넣어주기 ( ID )
                             //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
-                            const SizedBox(height: 120,child: Center(child:Text("이미지 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)))),
+                             SizedBox(height: 200,child:
+                                  Center(
+                                   child:  Image.asset(
+                                       "assets/resource/bee"+level+".png"
+                                     ),
+                                   )),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                              children: const [
-                                Text("level 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
-                                Text("단어 수 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))
+                              children: [
+                                Text(user?.level.toString()??"level 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+                                Text(user?.total_score.toString()??"단어 수 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))
                               ],
                             ),
                           ],
@@ -318,5 +331,8 @@ class _MissionState extends State<Mission>{
 
 
 
-}
 
+
+
+
+}

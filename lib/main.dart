@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:capstone_abeec/screens/JoinPage.dart';
 import 'package:capstone_abeec/screens/LoginPage.dart';
 import 'package:capstone_abeec/screens/MainPage.dart';
 import 'package:capstone_abeec/screens/Mission.dart';
@@ -14,15 +15,19 @@ import 'models/CameraMission.dart';
 import 'models/CameraMissionDB.dart';
 import 'models/ListeningMission.dart';
 import 'models/ListeningMissionDB.dart';
+import 'models/loginUserDB.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CameraMissionDB().fixed_camera_database;
   await ListeningMissionDB().fixed_listening_database;
+  await loginUserDB().fixed_loginUser_database;
   await CameraMissionDB().init();
+ // await Mission().getMissions();
 
    Timer(const Duration(seconds: 2), () {
   runApp(MyApp());
+ // runApp(JoinPage());
    });
 
   //runApp(MyApp());

@@ -10,6 +10,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/CameraMissionDB.dart';
+import '../models/loginUser.dart';
+import '../models/loginUserDB.dart';
 import '../models/voca.dart';
 import '../models/voca_db.dart';
 import 'Mission.dart';
@@ -22,9 +24,16 @@ class SearchVoca extends StatefulWidget {
 class _SearchVocaState extends State<SearchVoca> {
   final ImagePicker _picker = ImagePicker();
   File? image;
+  String? userId = '';
 
   @override
   void initState() {
+    Future.delayed(Duration.zero,() async {
+      loginUser? user = await loginUserDB().user();
+      userId = user?.user_id;
+
+    });
+
     super.initState();
     pickImage();
   }
@@ -62,7 +71,7 @@ class _SearchVocaState extends State<SearchVoca> {
       body: jsonEncode({
         'image': '$base64Image',
 
-        'id': 'yoojinjangjang'   // 전역변수  id 넣어주기
+        'id': userId   // 전역변수  id 넣어주기
         }),
     );
     var responseBody = utf8.decode(response.bodyBytes);
@@ -74,7 +83,7 @@ class _SearchVocaState extends State<SearchVoca> {
     res = jsonDecode(ponse);
 
     if (res['duplicate'] == "yes")
-      return await ShowDialog(res['id'].toString());
+      return await ShowDialog();
     //return await ShowDialog(res['id'].toString(),base64Image);
     else {
       // duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
@@ -267,39 +276,31 @@ class _SearchVocaState extends State<SearchVoca> {
   }
 
 //ShowDialog(String id,String base64Image) {
-  ShowDialog(String id) {
+  ShowDialog() {
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             title: Column(
               children: <Widget>[
-                new Text("중복 확인"),
+                new Text("중복 단어"),
               ],
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("내 단어장에 이미 있는 단어입니다."),
-                Text("사진을 변경하시겠습니까?"),
+                Text("저장된 단어입니다."),
               ],
             ),
             actions: <Widget>[
               TextButton(
                   onPressed: () {
-                    ifDuplicate();
-                  },
-                  child: Text("YES")),
-              //TextButton(onPressed:() {ifDuplicate(id,base64Image);},child:Text("YES")),
-              TextButton(
-                  onPressed: () {
                     Get.to(() => VocaDetail(), arguments: res);
                   },
-                  child: Text("NO")),
+                  child: Text("확인")),
             ],
           );
         });
