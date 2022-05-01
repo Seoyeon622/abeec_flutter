@@ -4,6 +4,8 @@ import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../models/loginUser.dart';
+import '../models/loginUserDB.dart';
 import 'MainPage.dart';
 
 void main() {
@@ -30,7 +32,15 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   static final GlobalKey<ScaffoldState> _scaffoldKey =
   GlobalKey<ScaffoldState>();
   late UnityWidgetController _unityWidgetController;
+  loginUser? user = loginUser();
 
+  @override
+  void initState() {
+    Future.delayed(Duration.zero,() async{
+       user = await loginUserDB().user();
+    });
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
 
@@ -80,7 +90,7 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    _unityWidgetController.postMessage('Game', 'setId', 'yoojinjangjang',);
+    _unityWidgetController.postMessage('Game', 'setId', user?.user_id.toString());
 
   }
 

@@ -40,9 +40,7 @@ class _JoinPageState extends State<JoinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("회원가입 화면"),
-      ),
+
       body: ListView(
         children: [
           Container(
@@ -90,7 +88,12 @@ class _JoinPageState extends State<JoinPage> {
                 }
               }
             },
-            child: Text("가입하기"),
+            child: const Text("가입하기"),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.to(LoginPage());},
+            child: const Text("로그인하기"),
           ),
         ],
       ),

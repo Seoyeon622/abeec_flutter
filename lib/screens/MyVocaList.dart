@@ -22,9 +22,10 @@ class _VocaListState extends State<MyVocaList> {
       List<Voca> vocaLists = await voca_db().vocas();
       setState(() {
         vocaList = vocaLists;
+        print(vocaList.toString());
       });
     });
-    print(vocaList.toString());
+
     super.initState();
   }
 

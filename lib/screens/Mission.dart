@@ -111,21 +111,7 @@ class _MissionState extends State<Mission>{
     print("listening : " + responseJson['listening'].toString());
     List<String> listening = List<String>.from(responseJson['listening']); //listening 리스트
 
-    // 데이터베이스에 추가하는 부분 작성
-    // for (var i in camera) {
-    // CameraMission camera = CameraMission(
-    // english: i,
-    // completed: 0,
-    // );
-    // await cameraMissionDB.insertCameraMission(camera);
-    // }
-    // for (var i in listening) {
-    // ListeningMission listeningMission = ListeningMission(
-    // english: i,
-    // count: 0,
-    // );
-    // await listeningMissionDB.insertListeningMission(listeningMission);
-    // }
+
     //기존에 저장된 데이터베이스와 동일한지 검사하여 동일한 경우 해당 데이터베이스를 유지해준다.
     var before = await cameraMissionDB.cameras();
     int i = 0;

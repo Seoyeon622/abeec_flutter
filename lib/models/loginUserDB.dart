@@ -45,15 +45,16 @@ class loginUserDB{
     int result = await db.update('login_user',
       user.toMap(),
     );
-    loginUser? u = await loginUserDB().user();
-    print(u.toString());
+    //loginUser? u = await loginUserDB().user();
+    //print(u.toString());
 
     return result;
   }
 
   Future<int> update(String id) async{
     final db = await fixed_loginUser_database;
-    
+
+
     int result = await db.rawUpdate(
         'UPDATE login_user SET user_id = ? WHERE user_id = ?',
     [id,'']);

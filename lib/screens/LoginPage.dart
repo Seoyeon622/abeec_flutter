@@ -33,9 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("로그인 화면"),
-      ),
+
       body: ListView(
         children: [
           Container(
