@@ -91,7 +91,7 @@ class _SearchVocaState extends State<SearchVoca> {
       //    Mission().cameraUpdate(r, res['english']);
       //});
       Voca voca = Voca(english:res['english'].toString(),korean: res['korean'].toString());
-      voca_db().insertListeningMission(voca);
+      voca_db().insertVoca(voca);
       voca_db().vocas().then((r){
         print(r.toString());
       });

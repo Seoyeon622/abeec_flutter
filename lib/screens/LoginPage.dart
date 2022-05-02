@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
+import '../models/voca_db.dart';
 import '../service/user_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    print('login init');
     loginUserDB().init();
+    //voca_db().deleteAllvoca();
     super.initState();
   }
 
@@ -62,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 int check = await u.login(_id.text.trim(), _password.text.trim());
                 if(check==1) { // 서버에서 해당 user 정보를 가져와서 모바일 db 갱신
                   await loginUserDB().update(_id.text.trim());
+                  await voca_db().init(_id.text.trim()); // 단어장 리스트 갱신
                    Get.to(MainPage());
                 }else{
                  await ShowDialog();

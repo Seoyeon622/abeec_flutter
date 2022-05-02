@@ -318,7 +318,8 @@ public class BuildGame : MonoBehaviour
         // 학습한 영단어 리스트 이미지 구성시 사용
         List<string> englishs = new List<string>();
 
-        id = "yoojinjangjang";
+        //id = "yoojinjangjang";
+        id = game.GetComponent<Game>().id;
         string quary = string.Format("select english from my_voca where user_id = '{0}';", id);
         MySqlCommand command = new MySqlCommand(quary, conn);
         MySqlDataReader rdr = command.ExecuteReader();

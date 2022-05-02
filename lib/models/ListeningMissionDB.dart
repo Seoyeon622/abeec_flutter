@@ -52,6 +52,7 @@ class ListeningMissionDB{
       english: english.trim(),
       count : 1,
     );
+    print(english);
     int result = await db.rawUpdate(
         'UPDATE listening_mission SET count = count + 1 WHERE english = ?',
         [english.trim()]);

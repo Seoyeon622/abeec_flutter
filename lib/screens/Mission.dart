@@ -117,7 +117,7 @@ class _MissionState extends State<Mission>{
     int i = 0;
 
     for (var element in before) {
-      if(element.english.toString() != camera[i]){  // 이전 내용에서 갱신 된 경우에
+      if(element.english.toString() != camera[i].trim()){  // 이전 내용에서 갱신 된 경우에
         print(element.english.toString() + " : " + camera[i]);
 
         await cameraMissionDB.deleteAllCameras();
