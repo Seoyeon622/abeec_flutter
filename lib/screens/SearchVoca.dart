@@ -14,6 +14,7 @@ import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
 import '../models/voca.dart';
 import '../models/voca_db.dart';
+import '../service/MyLevel.dart';
 import 'Mission.dart';
 
 class SearchVoca extends StatefulWidget {
@@ -96,6 +97,7 @@ class _SearchVocaState extends State<SearchVoca> {
         print(r.toString());
       });
       CameraMissionDB().cameraUpdate(res['english']);
+      MyLevel().getScore(2);
       return await Get.to(() => VocaDetail(), arguments: res);
     }
   }

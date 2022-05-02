@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../service/MyLevel.dart';
 import 'CameraMission.dart';
 
 class CameraMissionDB{
@@ -53,9 +54,11 @@ class CameraMissionDB{
     );
     int result = await db.update('camera_mission',camera.toMap(),where:'english=?',whereArgs:[camera.english]);
     // result - 변경된 row 갯수
-    //if(result!=0){
+    if(result!=0){
     // 점수를 올리는 함수
-    // }
+      MyLevel().getScore(3);
+
+    }
 
   }
 
