@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child:IconButton(
-                  onPressed: (){Get.to(JoinPage());},
+                  onPressed: (){Get.to(LoginPage());},
                   icon: Icon(Icons.logout,size:25.0),
                 )
             ),),
