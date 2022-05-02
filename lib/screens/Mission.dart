@@ -69,55 +69,54 @@ import '../models/ListeningMission.dart';
 import '../models/ListeningMissionDB.dart';
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
-class Mission extends StatefulWidget{
+class Mission extends StatefulWidget {
   @override
   _MissionState createState() => _MissionState();
 
-  getMissions() async{
+  getMissions() async {
     await _MissionState().getMission();
   }
-
 }
 
-
-
-
-
-class _MissionState extends State<Mission>{
-
-  List<CameraMission> cameraList = List.filled(7, CameraMission(english:'',completed: 0));
-  List<ListeningMission> listeningList = List.filled(3, ListeningMission(english: '',count: 0));
+class _MissionState extends State<Mission> {
+  List<CameraMission> cameraList =
+      List.filled(7, CameraMission(english: '', completed: 0));
+  List<ListeningMission> listeningList =
+      List.filled(3, ListeningMission(english: '', count: 0));
   List<String> camera = List.filled(7, '');
 
   CameraMissionDB cameraMissionDB = CameraMissionDB();
   ListeningMissionDB listeningMissionDB = ListeningMissionDB();
 
-  getMission() async{
-    String name = user?.user_id??"id";
+  getMission() async {
+    String name = user?.user_id ?? "id";
 
-    String url = "http://54.157.224.91:8080/abeec/mission/" + name; // {id} 부분 붙여주기
+    String url =
+        "http://54.157.224.91:8080/abeec/mission/" + name; // {id} 부분 붙여주기
     print(url);
     Uri uri = Uri.parse(url);
     var response = await http.get(uri);
     var responseBody = utf8.decode(response.bodyBytes);
     //print(responseBody);
     String res = responseBody.toString();
-    var responseJson  = jsonDecode(res);
+    var responseJson = jsonDecode(res);
 
     print("camera : " + responseJson['camera'].toString());
-     camera = List<String>.from(responseJson['camera']); // camera 리스트
+    camera = List<String>.from(responseJson['camera']); // camera 리스트
 
     print("listening : " + responseJson['listening'].toString());
-    List<String> listening = List<String>.from(responseJson['listening']); //listening 리스트
-
+    List<String> listening =
+        List<String>.from(responseJson['listening']); //listening 리스트
 
     //기존에 저장된 데이터베이스와 동일한지 검사하여 동일한 경우 해당 데이터베이스를 유지해준다.
     var before = await cameraMissionDB.cameras();
     int i = 0;
 
     for (var element in before) {
-      if(element.english.toString() != camera[i].trim()){  // 이전 내용에서 갱신 된 경우에
+      if (element.english.toString() != camera[i].trim()) {
+        // 이전 내용에서 갱신 된 경우에
         print(element.english.toString() + " : " + camera[i]);
 
         await cameraMissionDB.deleteAllCameras();
@@ -146,20 +145,19 @@ class _MissionState extends State<Mission>{
     setState(() {
       getDB();
     });
-
-
   }
-  getDB() async{
 
+  getDB() async {
     List<CameraMission> cameraLists = await cameraMissionDB.cameras();
     print(cameraLists.toString());
-    if(cameraLists.length<7){
-      cameraLists = List.filled(7, CameraMission(english: '',completed: 0));
+    if (cameraLists.length < 7) {
+      cameraLists = List.filled(7, CameraMission(english: '', completed: 0));
     }
-    List<ListeningMission> listeningLists = await listeningMissionDB.listenings();
+    List<ListeningMission> listeningLists =
+        await listeningMissionDB.listenings();
     print(listeningLists.toString());
-    if(listeningLists.length<3){
-      listeningLists = List.filled(3, ListeningMission(english: '',count: 0));
+    if (listeningLists.length < 3) {
+      listeningLists = List.filled(3, ListeningMission(english: '', count: 0));
     }
 
     setState(() {
@@ -169,156 +167,202 @@ class _MissionState extends State<Mission>{
   }
 
   loginUser? user = loginUser();
- // String? userId = '';
-  String level ='0';
+  // String? userId = '';
+  String level = '0';
   @override
   initState() {
-
-
-    Future.delayed(Duration.zero,() async {
+    Future.delayed(Duration.zero, () async {
       //your async 'await' codes goes here
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
       user = await loginUserDB().user();
       await getMission();
-
     });
 
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
-
-    level = user?.level.toString()??"0";
-
+    level = user?.level.toString() ?? "0";
 
     return MaterialApp(
         title: 'Flutter Layout demo',
         home: Scaffold(
             body: Center(
-                child:SafeArea(
-
+                child: SafeArea(
                     child: Column(
-                    children: <Widget>[
-
-                        SizedBox(height: 10,child : Align(  alignment: Alignment.centerRight,
-                            child: IconButton(onPressed: () async {
-                                                  await getMission();
-                                                  //await getDB();
-                                                   // setState(() {
-                                                   //   getDB();
-                                                   // });
-                                                   },
-
-                                    icon: const Icon(Icons.refresh,size:40.0),)) ),
-                      const SizedBox(
-                          height: 40,
-                          child: Text(
-                            "Weekly Mission",
-                            style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          )),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height:270,
-                        width :330,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 4,
-                                  color: Colors.orange,
-                                ),
-                                //color: Colors.amberAccent,
-                                borderRadius: BorderRadius.circular(10)    ),
-                          child:
-                              GridView.builder(
-                              padding: const EdgeInsets.all(10),
-                              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 500,
-                              mainAxisExtent: 60,
-                                    ),
-                                itemBuilder: (context, i) => Container( // 여기서부터 리스트 요소들 !
-                                            decoration: BoxDecoration(
-                                              color: Colors.amberAccent,
-                                              borderRadius: BorderRadius.circular(10),
-
-                                          ),
-                                          padding: const EdgeInsets.all(10),
-                                          margin: const EdgeInsets.all(5),
-                                            child:  Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                    Text(() {
-                                                      if(cameraList.length==10){return cameraList[i].english.toString() + "촬영하기";}
-                                                      else{
-                                                        if(i<=6){return cameraList[i].english.toString() + " 촬영하기 ";}
-                                                        else{return listeningList[i-7].english.toString() + " 듣기 ";}}}(),
-                                                        style: const TextStyle(fontSize: 20,),
-                                                        textAlign: TextAlign.center,
-                                                    ),
-                                                    Icon((){
-                                                      if(cameraList.length == 10) {
-                                                        if(cameraList[i].completed==0){return Icons.check_box_outline_blank;}
-                                                        else{return Icons.check_box;}
-                                                      }
-                                                      else{
-                                                        if(i<=6 && cameraList[i].completed == 0){return Icons.check_box_outline_blank;}     // 촬영 못함
-                                                        else if(i<=6 && cameraList[i].completed !=0){return Icons.check_box;}               // 촬영 함
-                                                        else if(listeningList[i-7].count! <= 2){return Icons.check_box_outline_blank;}      // 듣지 못함
-                                                        else{return Icons.check_box;}}}(),                                                   // 들음
-                                                      color: Colors.white,
-                                                      size:24.0,
-                                                    ),
-                                                    ])
-                                ),
-                                itemCount: 10,
-                              ),
-
-                        ),
-                      ),
-                      const SizedBox(height: 20,),
-                      Expanded(child: Container(
+          children: <Widget>[
+            SizedBox(
+                height: 10,
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () async {
+                        await getMission();
+                        //await getDB();
+                        // setState(() {
+                        //   getDB();
+                        // });
+                      },
+                      icon: const Icon(Icons.refresh, size: 40.0),
+                    ))),
+            const SizedBox(
+                height: 40,
+                child: Text(
+                  "Weekly Mission",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 270,
+              width: 330,
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 4,
+                      color: Colors.orange,
+                    ),
+                    //color: Colors.amberAccent,
+                    borderRadius: BorderRadius.circular(10)),
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(10),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 500,
+                    mainAxisExtent: 60,
+                  ),
+                  itemBuilder: (context, i) => Container(
+                      // 여기서부터 리스트 요소들 !
+                      decoration: BoxDecoration(
                         color: Colors.amberAccent,
-                        child: Center( child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            //const SizedBox(height: 10,),
-                            Text(user?.user_id??'id',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,), // 여기에 이름 넣어주기 ( ID )
-                            //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
-                             SizedBox(height: 200,child:
-                                  Center(
-                                   child:  Image.asset(
-                                       "assets/resource/bee"+level+".png"
-                                     ),
-                                   )),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                              children: [
-                                Text(user?.level.toString()??"level 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
-                                Text(user?.total_score.toString()??"단어 수 넣을 곳",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))
-                              ],
+                            Text(
+                              () {
+                                if (cameraList.length == 10) {
+                                  return cameraList[i].english.toString() +
+                                      "촬영하기";
+                                } else {
+                                  if (i <= 6) {
+                                    return cameraList[i].english.toString() +
+                                        " 촬영하기 ";
+                                  } else {
+                                    return listeningList[i - 7]
+                                            .english
+                                            .toString() +
+                                        " 듣기 ";
+                                  }
+                                }
+                              }(),
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                          ],
-                        ), ),
-                      ) ),
+                            Icon(
+                              () {
+                                if (cameraList.length == 10) {
+                                  if (cameraList[i].completed == 0) {
+                                    return Icons.check_box_outline_blank;
+                                  } else {
+                                    return Icons.check_box;
+                                  }
+                                } else {
+                                  if (i <= 6 && cameraList[i].completed == 0) {
+                                    return Icons.check_box_outline_blank;
+                                  } // 촬영 못함
+                                  else if (i <= 6 &&
+                                      cameraList[i].completed != 0) {
+                                    return Icons.check_box;
+                                  } // 촬영 함
+                                  else if (listeningList[i - 7].count! <= 2) {
+                                    return Icons.check_box_outline_blank;
+                                  } // 듣지 못함
+                                  else {
+                                    return Icons.check_box;
+                                  }
+                                }
+                              }(), // 들음
+                              color: Colors.white,
+                              size: 24.0,
+                            ),
+                          ])),
+                  itemCount: 10,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Stack(alignment: Alignment.center, children: [
+              new CircularPercentIndicator(radius: 250),
+              Container(
 
+                  child: Center(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //const SizedBox(height: 10,),
+                      Text(
+                        user?.user_id ?? 'id',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ), // 여기에 이름 넣어주기 ( ID )
+                      //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
+                      SizedBox(
+                          height: 200,
+                          child: Center(
+                            child: Image.asset(
+                                "assets/resource/bee" + level + ".png"),
+                          ))
                     ],
-                  ) // Hands on! 여기를 아래 코드로 대체하면 된다.
-                )
-              )
-        )
-    );
+                  )))
+            ]),
+            Expanded(
+                child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //const SizedBox(height: 10,),
+                    Text(
+                      user?.user_id ?? 'id',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ), // 여기에 이름 넣어주기 ( ID )
+                    //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
+                    SizedBox(
+                        height: 200,
+                        child: Center(
+                          child: Image.asset(
+                              "assets/resource/bee" + level + ".png"),
+                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(user?.level.toString() ?? "level 넣을 곳",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold)),
+                        Text(user?.total_score.toString() ?? "단어 수 넣을 곳",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ],
+        ) // Hands on! 여기를 아래 코드로 대체하면 된다.
+                    ))));
   }
-
-
-
-
-
-
-
-
-
-
 }

@@ -33,6 +33,7 @@ dependencies:
   flutter_tts :
   flutter_unity_widget: ^2020.3.25
   clickable_list_wheel_view: ^0.0.4
+  percent_indicator: ^3.4.0
 
 
   # The following adds the Cupertino Icons font to your application.

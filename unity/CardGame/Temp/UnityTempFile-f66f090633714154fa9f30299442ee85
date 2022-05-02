@@ -1,5 +1,5 @@
 /target:library
-/out:Temp/Assembly-CSharp-Editor.dll
+/out:Temp/Unity.VisualStudio.Editor.dll
 /nowarn:0169
 /nowarn:0649
 /debug:portable
@@ -7,7 +7,10 @@
 /nostdlib+
 /preferreduilang:en-US
 /langversion:latest
-/reference:Library/ScriptAssemblies/Assembly-CSharp.dll
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Library/ScriptAssemblies/UnityEditor.TestRunner.dll
+/reference:Library/ScriptAssemblies/UnityEngine.TestRunner.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -69,55 +72,12 @@
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEditor.dll"
-/reference:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
-/reference:Library/ScriptAssemblies/UnityEditor.TestRunner.dll
-/reference:Library/ScriptAssemblies/UnityEngine.TestRunner.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll
-/reference:Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Path.Editor.dll
-/reference:Library/ScriptAssemblies/NativeGallery.Editor.dll
-/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll
-/reference:Library/ScriptAssemblies/PsdPlugin.dll
-/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.Mathematics.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll
-/reference:Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll
-/reference:Library/ScriptAssemblies/NativeGallery.Runtime.dll
-/reference:Library/ScriptAssemblies/Unity.Mathematics.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Common.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll
-/reference:Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll
-/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
-/reference:Assets/DLL/I18N.CJK.dll
-/reference:Assets/DLL/I18N.dll
-/reference:Assets/DLL/I18N.MidEast.dll
-/reference:Assets/DLL/I18N.Other.dll
-/reference:Assets/DLL/I18N.Rare.dll
-/reference:Assets/DLL/I18N.West.dll
-/reference:Assets/DLL/MySql.Data.dll
 /reference:Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll
-/reference:C:/School/android/capstone_abeec/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.collab-proxy@1.14.4/Lib/Editor/PlasticSCM/log4netPlastic.dll
-/reference:C:/School/android/capstone_abeec/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.collab-proxy@1.14.4/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll
-/reference:C:/School/android/capstone_abeec/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.collab-proxy@1.14.4/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll
-/reference:C:/School/android/capstone_abeec/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.collab-proxy@1.14.4/Lib/Editor/PlasticSCM/unityplastic.dll
-/reference:C:/School/android/capstone_abeec/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll
+/reference:D:/git/abeec_flutter/unity/CardGame/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.4.34f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Core.dll"
@@ -256,6 +216,8 @@
 /define:UNITY_2019_2_OR_NEWER
 /define:UNITY_2019_3_OR_NEWER
 /define:UNITY_2019_4_OR_NEWER
+/define:PLATFORM_ARCH_64
+/define:UNITY_64
 /define:UNITY_INCLUDE_TESTS
 /define:ENABLE_AR
 /define:ENABLE_AUDIO
@@ -279,7 +241,6 @@
 /define:ENABLE_CLOUD_SERVICES_ADS
 /define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
 /define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
-/define:ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING
 /define:ENABLE_CLOUD_SERVICES_PURCHASING
 /define:ENABLE_CLOUD_SERVICES_ANALYTICS
 /define:ENABLE_CLOUD_SERVICES_UNET
@@ -293,29 +254,25 @@
 /define:ENABLE_MANAGED_TRANSFORM_JOBS
 /define:ENABLE_MANAGED_ANIMATION_JOBS
 /define:ENABLE_MANAGED_AUDIO_JOBS
-/define:ENABLE_RUNTIME_PERMISSIONS
-/define:ENABLE_ENGINE_CODE_STRIPPING
-/define:ENABLE_ONSCREEN_KEYBOARD
 /define:INCLUDE_DYNAMIC_GI
 /define:ENABLE_MONO_BDWGC
 /define:ENABLE_SCRIPTING_GC_WBARRIERS
 /define:PLATFORM_SUPPORTS_MONO
+/define:RENDER_SOFTWARE_CURSOR
 /define:ENABLE_VIDEO
-/define:PLATFORM_ANDROID
-/define:UNITY_ANDROID
-/define:UNITY_ANDROID_API
-/define:ENABLE_EGL
-/define:ENABLE_NETWORK
+/define:PLATFORM_STANDALONE
+/define:PLATFORM_STANDALONE_WIN
+/define:UNITY_STANDALONE_WIN
+/define:UNITY_STANDALONE
 /define:ENABLE_RUNTIME_GI
+/define:ENABLE_MOVIES
+/define:ENABLE_NETWORK
 /define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
-/define:PLATFORM_SUPPORTS_ADS_ID
-/define:UNITY_CAN_SHOW_SPLASH_SCREEN
-/define:UNITY_HAS_GOOGLEVR
-/define:UNITY_HAS_TANGO
-/define:ENABLE_SPATIALTRACKING
-/define:UNITY_ASTC_ONLY_DECOMPRESS
-/define:ENABLE_UNITYADS_RUNTIME
-/define:UNITY_UNITYADS_API
+/define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+/define:ENABLE_CLUSTER_SYNC
+/define:ENABLE_CLUSTERINPUT
+/define:GFXDEVICE_WAITFOREVENT_MESSAGEPUMP
+/define:ENABLE_WEBSOCKET_HOST
 /define:ENABLE_MONO
 /define:NET_4_6
 /define:ENABLE_PROFILER
@@ -338,6 +295,43 @@
 /define:ENABLE_LEGACY_INPUT_MANAGER
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
-Assets\FlutterUnityIntegration\Editor\Build.cs
-Assets\FlutterUnityIntegration\Editor\SweetShellHelper.cs
-Assets\FlutterUnityIntegration\Editor\XCodePostBuild.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\AssemblyInfo.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\AsyncOperation.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Cli.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Discovery.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\FileUtility.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Image.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\KnownAssemblies.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\Deserializer.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\ExceptionEventArgs.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\Message.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\MessageEventArgs.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\MessageType.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\Messenger.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\Serializer.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\TcpClient.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\TcpListener.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Messaging\UdpSocket.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\AssemblyNameProvider.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\FileIOProvider.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\GUIDProvider.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\ProjectGeneration.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\ProjectGenerationFlag.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\ProjectGeneration\ProjectProperties.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\SessionSettings.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Solution.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\SolutionParser.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\SolutionProjectEntry.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\SolutionProperties.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Symbols.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Testing\TestAdaptor.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Testing\TestResultAdaptor.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Testing\TestRunnerApiListener.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Testing\TestRunnerCallbacks.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\Testing\TestStatusAdaptor.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\UnityInstallation.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\UsageUtility.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\VersionPair.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\VisualStudioEditor.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\VisualStudioInstallation.cs
+D:\git\abeec_flutter\unity\CardGame\Library\PackageCache\com.unity.ide.visualstudio@2.0.12\Editor\VisualStudioIntegration.cs
