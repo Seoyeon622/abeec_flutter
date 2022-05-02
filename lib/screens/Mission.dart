@@ -175,7 +175,14 @@ class _MissionState extends State<Mission> {
 
   loginUser? user = loginUser();
   // String? userId = '';
-  String level = '0';
+  //String level = '0';
+  int? score;
+  int? exp;
+  int? level;
+  int? per;
+  double? ratio;
+
+
   @override
   initState() {
     Future.delayed(Duration.zero, () async {
@@ -193,7 +200,12 @@ class _MissionState extends State<Mission> {
 
   @override
   Widget build(BuildContext context) {
-    level = user?.level.toString() ?? "0";
+    //level = user?.level.toString() ?? "1";
+    level = user?.level;
+    score = user?.score;
+    exp = (6 + 4*(level!-1));
+    ratio = (score!/exp!);
+    per = (ratio!*100).toInt();
 
     return MaterialApp(
         title: 'Flutter Layout demo',
@@ -310,7 +322,13 @@ class _MissionState extends State<Mission> {
               height: 20,
             ),
             Stack(alignment: Alignment.center, children: [
-              new CircularPercentIndicator(radius: 250),
+              new CircularPercentIndicator(
+                progressColor: Colors.orange,
+                //backgroundColor: Colors.green,
+                  animation: true,
+              percent: ratio!,
+              lineWidth: 20
+              ,radius: 290),
               Container(
 
                   child: Center(
@@ -318,54 +336,37 @@ class _MissionState extends State<Mission> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       //const SizedBox(height: 10,),
-                      Text(
-                        user?.user_id ?? 'id',
+                      /*Text(
+                        "$per %",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
-                      ), // 여기에 이름 넣어주기 ( ID )
+                      ),*/
+                      // 여기에 이름 넣어주기 ( ID )
                       //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
                       SizedBox(
                           height: 200,
                           child: Center(
                             child: Image.asset(
-                                "assets/resource/bee" + level + ".png"),
+                                "assets/resource/bee" + "$level" + ".png"),
                           ))
                     ],
                   )))
             ]),
             Expanded(
                 child: Container(
-              color: Colors.white,
+
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //const SizedBox(height: 10,),
-                    Text(
-                      user?.user_id ?? 'id',
+                    Text("Lev.$level    $per %",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ), // 여기에 이름 넣어주기 ( ID )
                     //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
-                    SizedBox(
-                        height: 200,
-                        child: Center(
-                          child: Image.asset(
-                              "assets/resource/bee" + level + ".png"),
-                        )),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(user?.level.toString() ?? "level 넣을 곳",
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold)),
-                        Text(user?.total_score.toString() ?? "단어 수 넣을 곳",
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold))
-                      ],
-                    ),
                   ],
                 ),
               ),
