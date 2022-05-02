@@ -1,3 +1,4 @@
+import 'package:capstone_abeec/service/MyLevel.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -57,9 +58,10 @@ class ListeningMissionDB{
         'UPDATE listening_mission SET count = count + 1 WHERE english = ?',
         [english.trim()]);
 
-    //if(result != 0){
+    if(result != 0){
     // 점수를 올릴 함수
-    // }
+      MyLevel().getScore(3);
+    }
 
   }
 

@@ -1,4 +1,5 @@
 import 'package:capstone_abeec/models/ListeningMissionDB.dart';
+import 'package:capstone_abeec/service/MyLevel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -86,6 +87,7 @@ class _VocaDetailState extends State<VocaDetail> {
                     flutterTts.speak(controller.text);
                     // ListeningMissionDB().listeningUpdate(res['english'].toString());
                     ListeningMissionDB().listeningUpdate(english);
+                    MyLevel().getScore(4);
                   },
                       fillColor: const Color(0xffF8E77F),
                       elevation: 2.0,

@@ -33,6 +33,9 @@ class MyLevel{
     int result = await loginUserDB().insertloginUser(loginUser(user_id: userId,total_score: totalScore,score: score,level: level));
     if(result != 0){
       print("successfully get mission score");
+      print("score / exp = $score/$exp");
+      print("total Score = $totalScore");
+      print("현재 레벨은 $level 입니다.");
     }
     else {
       print("fail");

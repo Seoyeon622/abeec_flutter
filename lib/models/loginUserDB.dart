@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
@@ -64,12 +65,18 @@ class loginUserDB{
     String res = responseBody.toString();
     var responseJson = jsonDecode(res);
 
+    //total_score 통해서 exp 와 level 구하는 부분 구현
+    int total_score = responseJson['totalScore'];;
+    //print(total_score.runtimeType);
+    int level_2 = (1+((-2+sqrt(4+2*total_score))/2)).toInt();
+    int score_2 = total_score - (level_2-1)*(4+2*(level_2-1));
+
 
     loginUser user = loginUser(
       user_id: responseJson['id'],
       total_score: responseJson['totalScore'],
-      score:0,
-      level:0
+      score:score_2,
+      level:level_2
     );
     int result = await db.update('login_user', user.toMap());
 
@@ -92,7 +99,7 @@ class loginUserDB{
       user_id: '',
       total_score: 0,
       score: 0,
-      level: 0
+      level: 1
     );
 
     await loginUserDB().insert(user);
