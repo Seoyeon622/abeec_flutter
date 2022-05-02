@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
         // user_id가 빈것이면 아직 로그인이 안된 것
         Get.to(LoginPage());
       }
-
+      await Mission().getMissions();
     });
     super.initState();
   }

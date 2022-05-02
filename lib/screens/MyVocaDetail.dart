@@ -87,7 +87,6 @@ class _VocaDetailState extends State<VocaDetail> {
                     flutterTts.speak(controller.text);
                     // ListeningMissionDB().listeningUpdate(res['english'].toString());
                     ListeningMissionDB().listeningUpdate(english);
-                    MyLevel().getScore(4);
                   },
                       fillColor: const Color(0xffF8E77F),
                       elevation: 2.0,

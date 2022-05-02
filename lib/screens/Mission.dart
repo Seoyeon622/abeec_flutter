@@ -69,7 +69,9 @@ import '../models/ListeningMission.dart';
 import '../models/ListeningMissionDB.dart';
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
+import '../service/MyLevel.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
 
 class Mission extends StatefulWidget {
   @override
@@ -90,8 +92,11 @@ class _MissionState extends State<Mission> {
   CameraMissionDB cameraMissionDB = CameraMissionDB();
   ListeningMissionDB listeningMissionDB = ListeningMissionDB();
 
-  getMission() async {
-    String name = user?.user_id ?? "id";
+
+  getMission() async{
+    user = await loginUserDB().user();
+    String name = user?.user_id??"id";
+
 
     String url =
         "http://54.157.224.91:8080/abeec/mission/" + name; // {id} 부분 붙여주기
@@ -142,9 +147,11 @@ class _MissionState extends State<Mission> {
 
       i++;
     }
-    setState(() {
-      getDB();
-    });
+
+    // setState(() {
+    //   getDB();
+    // });
+
   }
 
   getDB() async {
@@ -176,7 +183,9 @@ class _MissionState extends State<Mission> {
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
       user = await loginUserDB().user();
-      await getMission();
+
+      await getDB();
+
     });
 
     super.initState();
