@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:capstone_abeec/models/voca.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
+
 class voca_db {
   var _fixed_voca_database;
 
@@ -34,7 +37,7 @@ class voca_db {
     });
   }
 
-  Future<void> insertListeningMission(Voca voca) async{ // db 삽입
+  Future<void> insertVoca(Voca voca) async{ // db 삽입
     final Database db = await fixed_voca_database;
 
     await db.insert(
@@ -43,6 +46,39 @@ class voca_db {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+  deleteAllvoca() async{
+    final db = await fixed_voca_database;
+
+    await db.rawDelete('DELETE FROM my_voca_database');
+  }
+  init(String id) async{
+    final db = await fixed_voca_database;
+
+    await deleteAllvoca();
+
+    String url = "http://54.157.224.91:8080/abeec/voca_list/"+id;
+    Uri uri = Uri.parse(url);
+    var response = await http.get(uri);
+    var responseBody = utf8.decode(response.bodyBytes);
+    String res = responseBody.toString();
+    var responseJson = jsonDecode(res);
+
+    //print("vocaList: " + responseJson.toString());
+    for(var voca in responseJson){
+      Voca inVoca = Voca(
+        english: voca['english'],
+        korean: voca['korean']
+      );
+      insertVoca(inVoca);
+      print(inVoca.toString());
+    }
+
+
+
+  }
+
+
+
 
 }
 
