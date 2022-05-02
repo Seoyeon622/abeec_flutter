@@ -126,14 +126,14 @@ class _MissionState extends State<Mission>{
         // 데이터베이스에 추가하는 부분 작성
         for (var i in camera) {
           CameraMission camera = CameraMission(
-            english: i,
+            english: i.trim(),
             completed: 0,
           );
           await cameraMissionDB.insertCameraMission(camera);
         }
         for (var i in listening) {
           ListeningMission listeningMission = ListeningMission(
-            english: i,
+            english: i.trim(),
             count: 0,
           );
           await listeningMissionDB.insertListeningMission(listeningMission);

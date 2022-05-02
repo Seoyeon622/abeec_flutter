@@ -49,12 +49,12 @@ class ListeningMissionDB{
     // count 갱신하는 부분 작성 필요
     final db = await fixed_listening_database;
     var listening = ListeningMission(
-      english: english,
+      english: english.trim(),
       count : 1,
     );
     int result = await db.rawUpdate(
         'UPDATE listening_mission SET count = count + 1 WHERE english = ?',
-        [english]);
+        [english.trim()]);
 
     //if(result != 0){
     // 점수를 올릴 함수

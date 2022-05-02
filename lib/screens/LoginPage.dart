@@ -25,7 +25,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-
+    print('login init');
+    loginUserDB().init();
     super.initState();
   }
 
@@ -59,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               if(_formKey.currentState!.validate()) {
                 print(_id.text.trim());
                 int check = await u.login(_id.text.trim(), _password.text.trim());
-                if(check==1) { // 데이터베이스에 해당 user_id를 갱신
+                if(check==1) { // 서버에서 해당 user 정보를 가져와서 모바일 db 갱신
                   await loginUserDB().update(_id.text.trim());
                    Get.to(MainPage());
                 }else{

@@ -20,7 +20,6 @@ class _JoinPageState extends State<JoinPage> {
   void initState() {
     // login_user 테이블 초기화 ( 삭제하고 빈 user 넣기 )
    // loginUserDB().fixed_loginUser_database;
-    loginUserDB().init();
     super.initState();
   }
   final _formKey = GlobalKey<FormState>();
@@ -73,19 +72,8 @@ class _JoinPageState extends State<JoinPage> {
 
                 String u_id = await u.join(_id.text.trim(), _name.text.trim(), _password.text.trim(),
                     int.parse(_age.text.trim()), _phone.text.trim());
-                loginUser user  =loginUser(
-                  user_id: _id.text.trim(),
-                  total_score: 0,
-                  score: 0,
-                  level: 0
-                );
-
-                int result = await loginUserDB().insertloginUser(user);
-                print(result);
-                //Get.to(LoginPage());
-                if(result!=0){
                   Get.to(LoginPage());
-                }
+
               }
             },
             child: const Text("가입하기"),

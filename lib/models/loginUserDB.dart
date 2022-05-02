@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
+import 'package:http/http.dart' as http;
 import 'loginUser.dart';
 
 class loginUserDB{
@@ -51,13 +53,25 @@ class loginUserDB{
     return result;
   }
 
-  Future<int> update(String id) async{
+  Future<int> update(String id) async{    // 해당 데이터베이스 서버 접속해서 user 정보가져온뒤 갱신해주기
     final db = await fixed_loginUser_database;
 
 
-    int result = await db.rawUpdate(
-        'UPDATE login_user SET user_id = ? WHERE user_id = ?',
-    [id,'']);
+    String url = "http://54.157.224.91:8080/abeec/user/" + id;
+    Uri uri = Uri.parse(url);
+    var response = await http.get(uri);
+    var responseBody = utf8.decode(response.bodyBytes);
+    String res = responseBody.toString();
+    var responseJson = jsonDecode(res);
+
+
+    loginUser user = loginUser(
+      user_id: responseJson['id'],
+      total_score: responseJson['totalScore'],
+      score:0,
+      level:0
+    );
+    int result = await db.update('login_user', user.toMap());
 
     return result;
   }
