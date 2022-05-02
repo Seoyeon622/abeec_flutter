@@ -69,6 +69,7 @@ import '../models/ListeningMission.dart';
 import '../models/ListeningMissionDB.dart';
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
+import '../service/MyLevel.dart';
 
 class Mission extends StatefulWidget{
   @override
@@ -94,6 +95,7 @@ class _MissionState extends State<Mission>{
   ListeningMissionDB listeningMissionDB = ListeningMissionDB();
 
   getMission() async{
+    user = await loginUserDB().user();
     String name = user?.user_id??"id";
 
     String url = "http://54.157.224.91:8080/abeec/mission/" + name; // {id} 부분 붙여주기
@@ -106,7 +108,7 @@ class _MissionState extends State<Mission>{
     var responseJson  = jsonDecode(res);
 
     print("camera : " + responseJson['camera'].toString());
-     camera = List<String>.from(responseJson['camera']); // camera 리스트
+    camera = List<String>.from(responseJson['camera']); // camera 리스트
 
     print("listening : " + responseJson['listening'].toString());
     List<String> listening = List<String>.from(responseJson['listening']); //listening 리스트
@@ -143,9 +145,9 @@ class _MissionState extends State<Mission>{
 
       i++;
     }
-    setState(() {
-      getDB();
-    });
+    // setState(() {
+    //   getDB();
+    // });
 
 
   }
@@ -180,7 +182,7 @@ class _MissionState extends State<Mission>{
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
       user = await loginUserDB().user();
-      await getMission();
+      await getDB();
 
     });
 
@@ -206,9 +208,9 @@ class _MissionState extends State<Mission>{
                             child: IconButton(onPressed: () async {
                                                   await getMission();
                                                   //await getDB();
-                                                   // setState(() {
-                                                   //   getDB();
-                                                   // });
+                                                   setState(() {
+                                                     getDB();
+                                                   });
                                                    },
 
                                     icon: const Icon(Icons.refresh,size:40.0),)) ),
@@ -265,7 +267,8 @@ class _MissionState extends State<Mission>{
                                                         if(i<=6 && cameraList[i].completed == 0){return Icons.check_box_outline_blank;}     // 촬영 못함
                                                         else if(i<=6 && cameraList[i].completed !=0){return Icons.check_box;}               // 촬영 함
                                                         else if(listeningList[i-7].count! <= 2){return Icons.check_box_outline_blank;}      // 듣지 못함
-                                                        else{return Icons.check_box;}}}(),                                                   // 들음
+                                                        else{
+                                                          return Icons.check_box;}}}(),                                                   // 들음
                                                       color: Colors.white,
                                                       size:24.0,
                                                     ),

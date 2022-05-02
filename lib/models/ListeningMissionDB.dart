@@ -49,16 +49,18 @@ class ListeningMissionDB{
   listeningUpdate(String english) async{
     // count 갱신하는 부분 작성 필요
     final db = await fixed_listening_database;
-    var listening = ListeningMission(
-      english: english.trim(),
-      count : 1,
-    );
+    // var listening = ListeningMission(
+    //   english: english.trim(),
+    //   count : 1,
+    // );
     print(english);
     int result = await db.rawUpdate(
         'UPDATE listening_mission SET count = count + 1 WHERE english = ?',
         [english.trim()]);
+    List<Map<String,dynamic>>  mission =
+      await db.rawQuery('SELECT * FROM listening_mission WHERE english = ?',[english.trim()]);
 
-    if(result != 0){
+    if(result != 0 && mission[0]['count']==3){
     // 점수를 올릴 함수
       MyLevel().getScore(3);
     }
