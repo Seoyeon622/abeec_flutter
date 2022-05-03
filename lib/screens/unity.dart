@@ -1,3 +1,5 @@
+import 'package:capstone_abeec/models/voca.dart';
+import 'package:capstone_abeec/models/voca_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
@@ -34,10 +36,19 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   late UnityWidgetController _unityWidgetController;
   loginUser? user = loginUser();
 
+  List<Voca> vocaList = List.filled(0, Voca(english:'',korean:''));
+
   @override
   void initState() {
     Future.delayed(Duration.zero,() async{
        user = await loginUserDB().user();
+       List<Voca> vocaLists = await voca_db().vocas();
+       vocaList = vocaLists;
+       print("______");
+       print(user?.user_id);
+       print(vocaList.length);
+       print("______");
+
     });
     super.initState();
   }
@@ -90,7 +101,9 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    _unityWidgetController.postMessage('Game', 'setId', user?.user_id.toString());
+
+    _unityWidgetController.postJsonMessage('Game', 'setId',
+         {"args":"qwer","w_c": 3});
 
   }
 

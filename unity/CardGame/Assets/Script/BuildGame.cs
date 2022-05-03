@@ -84,27 +84,28 @@ public class BuildGame : MonoBehaviour
 
 
         userSpr = dbConnect(game.GetComponent<Game>().id);
-        Debug.Log("SprCount: " + userSpr.Count);
-        Debug.Log("level : " + level);
+        Debug.Log("뿅뿅 SprCount: " + userSpr.Count);
+        Debug.Log("뿅 level : " + level);
         
         /*for(int i = 0; i < userSpr.Count; i++)
         {
             Debug.Log(userSpr[i].name);
         }*/
-
-        if(userSpr.Count < 4 && level == 8)
+/*
+        if(level == 8)
         {
             SceneManager.LoadScene("MainMenu");
 
-        }else if(userSpr.Count < 6 && level == 12)
+        }else if(level == 12)
         {
             SceneManager.LoadScene("MainMenu");
-
-        }else if(userSpr.Count < 8 && level == 16)
-        {
-            SceneManager.LoadScene("MainMenu");
-
+            //userSpr.Count < 8 &&
         }
+        else if(level == 16)
+        {
+            SceneManager.LoadScene("MainMenu");
+
+        }*/
 
         int[] rand_image = randomCard(userSpr.Count, level / 2);
         int[] rand_number = randomCard(level, level);
