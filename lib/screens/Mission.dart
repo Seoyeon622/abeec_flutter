@@ -58,6 +58,8 @@ class _MissionState extends State<Mission>{
 import 'dart:async';
 import 'dart:developer';
 import 'package:capstone_abeec/models/CameraMission.dart';
+import 'package:capstone_abeec/models/voca.dart';
+import 'package:capstone_abeec/models/voca_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

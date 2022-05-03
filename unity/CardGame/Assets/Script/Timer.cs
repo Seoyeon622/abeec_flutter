@@ -38,7 +38,7 @@ public class Timer : MonoBehaviour
         {
             if (timeStop == false)
             {
-                timer.transform.localScale -= new Vector3(0, 0.00003f, 0); // x축 조절로 시간 조절
+                timer.transform.localScale -= new Vector3(0, 0.00005f, 0); // x축 조절로 시간 조절
                                                                            // timer.transform.localScale -= new Vector3(0, 0.0005f, 0); // x축 조절로 시간 조절
             }
         }
