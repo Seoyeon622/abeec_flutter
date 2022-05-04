@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class Game : MonoBehaviour
@@ -8,7 +9,7 @@ public class Game : MonoBehaviour
 
     public string id;
     public int word_c;
-    public Dictionary<string,dynamic> k;
+    public Dictionary<string, dynamic> k;
     public object obj1;
     public string str;
     // Start is called before the first frame update
@@ -19,6 +20,8 @@ public class Game : MonoBehaviour
         k.Add("w_c", 3);
         Debug.Log(k);
         setId(k);*/
+
+        //setId("qwer,1");
     }
     private void Awake()
     {
@@ -28,15 +31,19 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void setId(Dictionary<string,dynamic> a)
+    public void setId(string args)
     {
+        Debug.Log(args);
+        string[] arg = args.Split(',');
+        id = arg[0];
+        word_c = Convert.ToInt32(arg[1]);
         //k = obj;
         //str = JsonUtility.ToJson(obj);
-        id = a["args"];
-        word_c = a["w_c"];
+        //id = a["args"];
+        // word_c = a["w_c"];
 
         //Debug.Log("Flutter to Unity: " + args);
         //k = { "args":"qwer",}

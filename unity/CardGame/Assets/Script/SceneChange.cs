@@ -15,22 +15,23 @@ public class SceneChange : MonoBehaviour
     bool gameActive = false; // 단어 개수에 따라 게임 실행여부 판단
 
     public int w_c; // 단어 개수
-    
+
     void Start()
     {
-        game = GameObject.Find("Game"); // MainMenu의 id변수를 가진 오브젝트 가져옴 
+/*        game = GameObject.Find("Game"); // MainMenu의 id변수를 가진 오브젝트 가져옴 
+        Debug.Log(game.GetComponent<Game>().id + game.GetComponent<Game>().word_c.ToString());
+
         warningPanel.SetActive(true);
         warningPanel.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = string.Format("{0}, {1}",
       game.GetComponent<Game>().id, game.GetComponent<Game>().word_c);
-
-        w_c = game.GetComponent<Game>().word_c;
+        w_c = game.GetComponent<Game>().word_c;*/
         //w_c = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void closePanel()
@@ -43,9 +44,11 @@ public class SceneChange : MonoBehaviour
     }
 
     public void Change() // 버튼을 누르면 레벨별로 level변수 지정하고 씬 전환
-    {   
+    {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-       //Debug.Log(clickBtn.GetComponentInChildren<Text>().text);
+         game = GameObject.Find("Game");
+        int w_c = game.GetComponent<Game>().word_c;
+        //Debug.Log(clickBtn.GetComponentInChildren<Text>().text);
         switch (clickBtn.GetComponentInChildren<Text>().text) // 버튼의 text에 따라 level설정
         {
             case "Easy":
@@ -65,7 +68,7 @@ public class SceneChange : MonoBehaviour
 
                 break;
             case "Normal":
-                if(w_c < 6)
+                if (w_c < 6)
                 {
                     int i = 6 - w_c;
                     gameActive = false;
@@ -77,7 +80,7 @@ public class SceneChange : MonoBehaviour
                     level = 12;
                     gameActive = true;
                 }
-                
+
 
                 break;
             case "Hard":
@@ -94,7 +97,7 @@ public class SceneChange : MonoBehaviour
                     gameActive = true;
                 }
                 break;
-            default:break;
+            default: break;
         }
         // Debug.Log(level);
 

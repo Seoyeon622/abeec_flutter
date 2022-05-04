@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:capstone_abeec/models/voca.dart';
 import 'package:capstone_abeec/models/voca_db.dart';
 import 'package:flutter/material.dart';
@@ -37,17 +39,23 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   loginUser? user = loginUser();
 
   List<Voca> vocaList = List.filled(0, Voca(english:'',korean:''));
+  int? vocaLength;
+  String? user_id;
 
   @override
   void initState() {
     Future.delayed(Duration.zero,() async{
-       user = await loginUserDB().user();
-       List<Voca> vocaLists = await voca_db().vocas();
-       vocaList = vocaLists;
-       print("______");
-       print(user?.user_id);
-       print(vocaList.length);
-       print("______");
+      user = await loginUserDB().user();
+      List<Voca> vocaLists = await voca_db().vocas();
+      vocaList = vocaLists;
+      vocaLength = 1;
+      user_id = user?.user_id;
+
+      print("______");
+      print(user?.user_id);
+      print(vocaList.length);
+      print("______");
+
 
     });
     super.initState();
@@ -102,10 +110,11 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
 
-    _unityWidgetController.postJsonMessage('Game', 'setId',
-         {"args":"qwer","w_c": 3});
+    _unityWidgetController.postMessage('Game', 'setId',
+        'qwer,3');
 
   }
+
 
 
 
