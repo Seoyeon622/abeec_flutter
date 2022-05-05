@@ -18,13 +18,15 @@ public class SceneChange : MonoBehaviour
 
     void Start()
     {
-/*        game = GameObject.Find("Game"); // MainMenu의 id변수를 가진 오브젝트 가져옴 
-        Debug.Log(game.GetComponent<Game>().id + game.GetComponent<Game>().word_c.ToString());
+        warningPanel.SetActive(false);
 
-        warningPanel.SetActive(true);
-        warningPanel.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = string.Format("{0}, {1}",
-      game.GetComponent<Game>().id, game.GetComponent<Game>().word_c);
-        w_c = game.GetComponent<Game>().word_c;*/
+        /*        game = GameObject.Find("Game"); // MainMenu의 id변수를 가진 오브젝트 가져옴 
+                Debug.Log(game.GetComponent<Game>().id + game.GetComponent<Game>().word_c.ToString());
+
+                warningPanel.SetActive(true);
+                warningPanel.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = string.Format("{0}, {1}",
+              game.GetComponent<Game>().id, game.GetComponent<Game>().word_c);
+                w_c = game.GetComponent<Game>().word_c;*/
         //w_c = 5;
     }
 
@@ -45,9 +47,18 @@ public class SceneChange : MonoBehaviour
 
     public void Change() // 버튼을 누르면 레벨별로 level변수 지정하고 씬 전환
     {
+        
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
          game = GameObject.Find("Game");
         int w_c = game.GetComponent<Game>().word_c;
+
+        string id = game.GetComponent<Game>().id;
+        Debug.Log("00000000000000000000000");
+
+        Debug.Log(id);
+        Debug.Log(w_c);
+        Debug.Log("00000000000000000000000");
+
         //Debug.Log(clickBtn.GetComponentInChildren<Text>().text);
         switch (clickBtn.GetComponentInChildren<Text>().text) // 버튼의 text에 따라 level설정
         {

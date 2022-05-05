@@ -36,10 +36,12 @@ public class Game : MonoBehaviour
 
     public void setId(string args)
     {
-        Debug.Log(args);
+        //Debug.Log(args);
         string[] arg = args.Split(',');
         id = arg[0];
         word_c = Convert.ToInt32(arg[1]);
+        
+
         //k = obj;
         //str = JsonUtility.ToJson(obj);
         //id = a["args"];

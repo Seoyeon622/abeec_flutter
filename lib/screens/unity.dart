@@ -38,22 +38,19 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
   late UnityWidgetController _unityWidgetController;
   loginUser? user = loginUser();
 
-  List<Voca> vocaList = List.filled(0, Voca(english:'',korean:''));
+  List<Voca>? vocaList = List.filled(0, Voca(english:'',korean:''));
   int? vocaLength;
   String? user_id;
 
   @override
   void initState() {
     Future.delayed(Duration.zero,() async{
-      user = await loginUserDB().user();
-      List<Voca> vocaLists = await voca_db().vocas();
-      vocaList = vocaLists;
-      vocaLength = 1;
-      user_id = user?.user_id;
+
 
       print("______");
       print(user?.user_id);
-      print(vocaList.length);
+      print(vocaList?.length);
+      print('$user_id,$vocaLength');
       print("______");
 
 
@@ -102,16 +99,30 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
     );
   }
 
-
+/*
+Future<void> setInfo() async{
+    final
+}
+*/
 
 
 
   // Callback that connects the created controller to the unity controller
-  void onUnityCreated(controller) {
-    _unityWidgetController = controller;
+  Future<void> onUnityCreated(controller) async{
 
+    user = await loginUserDB().user();
+    List<Voca> vocaLists = await voca_db().vocas();
+    vocaList = vocaLists;
+    vocaLength = vocaList!.length;
+    user_id = user!.user_id;
+    //user_id = 'yoojinjangjang';
+    //vocaLength = 10;
+
+
+    _unityWidgetController = controller;
     _unityWidgetController.postMessage('Game', 'setId',
-        'qwer,3');
+        '$user_id,$vocaLength');
+
 
   }
 
