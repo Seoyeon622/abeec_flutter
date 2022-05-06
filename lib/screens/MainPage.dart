@@ -1,3 +1,4 @@
+import 'package:capstone_abeec/constants.dart';
 import 'package:capstone_abeec/screens/MyVocaList.dart';
 import 'package:capstone_abeec/screens/SearchVoca.dart';
 import 'package:capstone_abeec/screens/unity.dart';
@@ -44,7 +45,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
-        backgroundColor: Color(0xffF8E77F),
+        backgroundColor: Color(0xffFFFFFF),
         body: SafeArea(
           child: Column(children: [
             Align(alignment: Alignment.centerRight,
@@ -59,35 +60,42 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.logout,size:25.0),
                 )
             ),),
-
             Container(
-              margin: EdgeInsets.fromLTRB(0,0, 0, 0),
-
-              width: 400,
-              height: 200,
-              child: Center(
-                  child: Image.asset('assets/resource/bee.png',
-                      )),
+              padding: EdgeInsets.only(top: 80),
+              alignment: Alignment.center,
+              height: 150,
+              child: Text("ABeeC", style: TextStyle(fontFamily: "Logo", fontSize: 30)),
+              decoration: BoxDecoration(color: kPrimaryColor, borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(150), bottomRight: Radius.circular(150),
+              )),
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0,0, 0, 0),
-              //color: Colors.orange,
-              width: 300,
-              height: 100,
-              child: Center(
-                  child: Image.asset('assets/resource/logo.png',
-                      width: 400, height: 400)),
-              /*padding : EdgeInsets.all(20),
-          child:Image.asset('assets/resource/logo.png')*/
-            ),
+            // Container(
+            //   margin: EdgeInsets.fromLTRB(0,0, 0, 0),
+            //
+            //   width: 100,
+            //   height: 100,
+            //   child: Center(
+            //       child: Image.asset('assets/resource/cute_bee.png',
+            //           )),
+            // ),
+          //   Container(
+          //     margin: EdgeInsets.fromLTRB(0,0, 0, 0),
+          //     //color: Colors.orange,
+          //     width: 300,
+          //     height: 100,
+          //     child: Center(
+          //         child: Image.asset('assets/resource/AbeeC_logo.png',
+          //             width: 1000, height: 1000)),
+          //     /*padding : EdgeInsets.all(20),
+          // child:Image.asset('assets/resource/logo.png')*/
+          //   ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(50),
-                border:Border.all(color:Colors.orangeAccent,width:7)
+                borderRadius: BorderRadius.circular(40),
+                border:Border.all(color:kPrimaryColor,width:7)
               ),
               margin: EdgeInsets.fromLTRB(20, 30, 20, 0),
-
               width: 400,
               height: 300,
               child: Stack(

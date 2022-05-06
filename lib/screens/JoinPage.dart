@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/loginUserDB.dart';
+import '../constants.dart';
 
 class JoinPage extends StatefulWidget {
 
@@ -44,8 +45,15 @@ class _JoinPageState extends State<JoinPage> {
         children: [
           Container(
             alignment: Alignment.center,
-            height: 200,
-            child: Text("ABeeC", style: TextStyle(fontSize: 40,)),
+            height: 100,
+            margin: EdgeInsets.only(top:90),
+            child : Column(
+              children: [
+                Text("Welcome!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 50, fontWeight:FontWeight.bold)),
+                Text("회원 가입 후 AbeeC와 함께 해요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 20, color: kTextColor)),
+              ],
+            )
+
           ),
           _joinForm(),
         ],
@@ -66,23 +74,31 @@ class _JoinPageState extends State<JoinPage> {
           JoinLogin_TFF(controller: _password, hint: "비밀번호를", funcValidator: validatePassword(),),
           JoinLogin_TFF(controller: _age, hint: "나이를", funcValidator: validateAge(),),
           JoinLogin_TFF(controller: _phone, hint: "휴대폰번호를", funcValidator: validatePhone(),),
-          ElevatedButton(
-            onPressed: () async {
-              if(_formKey.currentState!.validate()) {
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            child: ElevatedButton(
+              onPressed: () async {
+                if(_formKey.currentState!.validate()) {
 
-                String u_id = await u.join(_id.text.trim(), _name.text.trim(), _password.text.trim(),
-                    int.parse(_age.text.trim()), _phone.text.trim());
+                  String u_id = await u.join(_id.text.trim(), _name.text.trim(), _password.text.trim(),
+                      int.parse(_age.text.trim()), _phone.text.trim());
                   Get.to(LoginPage());
 
-              }
-            },
-            child: const Text("가입하기"),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.to(LoginPage());},
-            child: const Text("로그인하기"),
-          ),
+                }
+              },
+              child: const Text("가입하기", style: TextStyle(fontFamily: "GmarketSans", fontSize: 20, fontWeight:FontWeight.bold),),
+              style: ElevatedButton.styleFrom(
+                  primary: kPrimaryColor,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),minimumSize: Size(280, 60)
+              ),
+            )
+          )
+
+          // TextButton(
+          //   onPressed: () {
+          //     Get.to(LoginPage());},
+          //   child: const Text("로그인하기", style: TextStyle(fontFamily: "GmarketSans")),
+          // ),
+
         ],
       ),
     );
