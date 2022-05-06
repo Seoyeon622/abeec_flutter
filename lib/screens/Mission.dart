@@ -179,10 +179,10 @@ class _MissionState extends State<Mission> {
   // String? userId = '';
   //String level = '0';
   int? score;
-  int? exp;
+  int exp =0;
   int? level;
-  int? per;
-  double? ratio;
+  int per =0;
+  double ratio=0;
 
 
   @override
@@ -192,22 +192,33 @@ class _MissionState extends State<Mission> {
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
       user = await loginUserDB().user();
+      level = user?.level??0;
+      score = user?.score??0;
+      exp = (6 + 4*(level!-1));
+      ratio = (score!/exp);
+      per = (ratio*100).toInt();
 
       await getDB();
 
     });
-
+    setState(() {
+      level = user?.level??0;
+      score = user?.score??0;
+      exp = (6 + 4*(level!-1));
+      ratio = (score!/exp);
+      per = (ratio*100).toInt();
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     //level = user?.level.toString() ?? "1";
-    level = user?.level;
-    score = user?.score;
-    exp = (6 + 4*(level!-1));
-    ratio = (score!/exp!);
-    per = (ratio!*100).toInt();
+    // level = user?.level;
+    // score = user?.score;
+    // exp = (6 + 4*(level!-1));
+    // ratio = (score!/exp!);
+    // per = (ratio!*100).toInt();
 
     return MaterialApp(
         title: 'Flutter Layout demo',
@@ -223,10 +234,7 @@ class _MissionState extends State<Mission> {
                     child: IconButton(
                       onPressed: () async {
                         await getMission();
-                        //await getDB();
-                        // setState(() {
-                        //   getDB();
-                        // });
+
                       },
                       icon: const Icon(Icons.refresh, size: 40.0),
                     ))),
@@ -324,11 +332,11 @@ class _MissionState extends State<Mission> {
               height: 20,
             ),
             Stack(alignment: Alignment.center, children: [
-              new CircularPercentIndicator(
+              CircularPercentIndicator(
                 progressColor: Colors.orange,
                 //backgroundColor: Colors.green,
                   animation: true,
-              percent: ratio!,
+              percent: ratio,
               lineWidth: 20
               ,radius: 290),
               Container(
@@ -350,7 +358,7 @@ class _MissionState extends State<Mission> {
                           height: 200,
                           child: Center(
                             child: Image.asset(
-                                "assets/resource/bee" + "$level" + ".png"),
+                                "assets/resource/bee" + level.toString() + ".png"),
                           ))
                     ],
                   )))

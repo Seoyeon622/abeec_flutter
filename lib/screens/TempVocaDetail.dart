@@ -130,9 +130,9 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                               child:Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
-                                  Icon(Icons.save_alt,size: 50),
+                                  Icon(Icons.check_circle,size: 50),
                                   Text(
-                                    "저장할래요",
+                                    "저장해",
                                     style: TextStyle(fontFamily: 'DoHyeonRegular'),
                                   )
                                 ],
@@ -152,7 +152,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                             child:Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.file_download_off,size: 50),
+                                Icon(Icons.cancel,size: 50),
                                 Text(
                                   "저장안해",
                                   style: TextStyle(fontFamily: 'DoHyeonRegular'),
