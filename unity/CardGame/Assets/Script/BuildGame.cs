@@ -9,6 +9,7 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using UnityEngine.SceneManagement;
 
 public class BuildGame : MonoBehaviour
 {
@@ -83,11 +84,28 @@ public class BuildGame : MonoBehaviour
 
 
         userSpr = dbConnect(game.GetComponent<Game>().id);
+        Debug.Log("뿅뿅 SprCount: " + userSpr.Count);
+        Debug.Log("뿅 level : " + level);
         
-        for(int i = 0; i < userSpr.Count; i++)
+        /*for(int i = 0; i < userSpr.Count; i++)
         {
             Debug.Log(userSpr[i].name);
+        }*/
+/*
+        if(level == 8)
+        {
+            SceneManager.LoadScene("MainMenu");
+
+        }else if(level == 12)
+        {
+            SceneManager.LoadScene("MainMenu");
+            //userSpr.Count < 8 &&
         }
+        else if(level == 16)
+        {
+            SceneManager.LoadScene("MainMenu");
+
+        }*/
 
         int[] rand_image = randomCard(userSpr.Count, level / 2);
         int[] rand_number = randomCard(level, level);
@@ -319,7 +337,6 @@ public class BuildGame : MonoBehaviour
         List<string> englishs = new List<string>();
 
         //id = "yoojinjangjang";
-        id = game.GetComponent<Game>().id;
         string quary = string.Format("select english from my_voca where user_id = '{0}';", id);
         MySqlCommand command = new MySqlCommand(quary, conn);
         MySqlDataReader rdr = command.ExecuteReader();

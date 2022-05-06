@@ -10,6 +10,7 @@ import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
 import '../models/voca_db.dart';
 import '../service/user_controller.dart';
+import 'Mission.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     loginUserDB().init();
+
     //voca_db().deleteAllvoca();
     super.initState();
   }

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:capstone_abeec/models/my_voca_db.dart';
 import 'package:capstone_abeec/screens/MyVocaDetail.dart';
+import 'package:capstone_abeec/screens/TempVocaDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
 import '../models/voca.dart';
 import '../models/voca_db.dart';
+import '../service/MyLevel.dart';
 import 'Mission.dart';
 
 class SearchVoca extends StatefulWidget {
@@ -70,7 +72,6 @@ class _SearchVocaState extends State<SearchVoca> {
       },
       body: jsonEncode({
         'image': '$base64Image',
-
         'id': userId   // 전역변수  id 넣어주기
         }),
     );
@@ -87,16 +88,12 @@ class _SearchVocaState extends State<SearchVoca> {
     //return await ShowDialog(res['id'].toString(),base64Image);
     else {
       // duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
-      //Mission().createDBCamera().then((r){
-      //    Mission().cameraUpdate(r, res['english']);
-      //});
-      Voca voca = Voca(english:res['english'].toString(),korean: res['korean'].toString());
-      voca_db().insertVoca(voca);
-      voca_db().vocas().then((r){
-        print(r.toString());
-      });
-      CameraMissionDB().cameraUpdate(res['english']);
-      return await Get.to(() => VocaDetail(), arguments: res);
+      return await Get.to(()=>TempVocaDetail(),arguments: res);
+      // Voca voca = Voca(english:res['english'].toString(),korean: res['korean'].toString());
+      // voca_db().insertVoca(voca);
+      // CameraMissionDB().cameraUpdate(res['english']);
+      // MyLevel().getScore(2);
+      // return await Get.to(() => VocaDetail(), arguments: res);
     }
   }
 

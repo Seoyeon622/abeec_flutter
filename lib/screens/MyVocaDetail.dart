@@ -1,9 +1,11 @@
 import 'package:capstone_abeec/models/ListeningMissionDB.dart';
+import 'package:capstone_abeec/service/MyLevel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../models/voca.dart';
+import 'MainPage.dart';
 
 class VocaDetail extends StatefulWidget {
 
@@ -61,7 +63,14 @@ class _VocaDetailState extends State<VocaDetail> {
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: [ Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              onPressed: ()  {
+                Get.off(()=>MainPage());
+              },
+              icon: const Icon(Icons.arrow_back, size: 40.0),
+            )),
             const Center(
                 child: Image(image:AssetImage('assets/resource/bee.png'),height: 150.0,)
             ),
