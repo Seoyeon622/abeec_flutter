@@ -1,3 +1,4 @@
+import 'package:capstone_abeec/constants.dart';
 import 'package:capstone_abeec/models/ListeningMissionDB.dart';
 import 'package:capstone_abeec/service/MyLevel.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _VocaDetailState extends State<VocaDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF8E77F),
+      backgroundColor: kPrimaryColor,
       // appBar: AppBar(
       //   title: Text("단어 상세 화면"),
       // ),
@@ -64,39 +65,34 @@ class _VocaDetailState extends State<VocaDetail> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: [ Align(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.topLeft,
             child: IconButton(
               onPressed: ()  {
                 Get.off(()=>MainPage());
               },
               icon: const Icon(Icons.arrow_back, size: 40.0),
             )),
-            const Center(
-                child: Image(image:AssetImage('assets/resource/bee.png'),height: 150.0,)
-            ),
             Container(
                 margin: EdgeInsets.fromLTRB(0,20, 0, 0),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
                 color: Colors.white,
                 width: 350.0,
-              height: 500.0,
+                height: 500.0,
 
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                    Image(image:AssetImage(imagePath)),
                    const SizedBox(height: 35.0,),
-                   // Text(res['english'], style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-                   // Text(res['korean'], style: TextStyle(fontSize: 38),),
-                  Text(english, style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-                  Text(korean, style: TextStyle(fontSize: 38),),
+                  Text(english, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 40,fontWeight: FontWeight.bold),),
+                  Text(korean, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 38, fontWeight: FontWeight.bold),),
                   const SizedBox(height: 20.0,),
                   RawMaterialButton(onPressed: (){
                     flutterTts.speak(controller.text);
                     // ListeningMissionDB().listeningUpdate(res['english'].toString());
                     ListeningMissionDB().listeningUpdate(english);
                   },
-                      fillColor: const Color(0xffF8E77F),
+                      fillColor: kPrimaryColor,
                       elevation: 2.0,
                       shape: const CircleBorder(),
                       padding: const EdgeInsets.all(10.0),

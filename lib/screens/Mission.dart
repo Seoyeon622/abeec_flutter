@@ -1,12 +1,14 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'package:capstone_abeec/constants.dart';
 import 'package:capstone_abeec/models/CameraMission.dart';
 import 'package:capstone_abeec/models/voca.dart';
 import 'package:capstone_abeec/models/voca_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'dart:convert';
 
@@ -15,8 +17,6 @@ import '../models/ListeningMission.dart';
 import '../models/ListeningMissionDB.dart';
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
-import '../service/MyLevel.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 
 class Mission extends StatefulWidget {
@@ -167,8 +167,24 @@ class _MissionState extends State<Mission> {
     return MaterialApp(
         title: 'Flutter Layout demo',
         home: Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                "Weekly Mission", style: TextStyle(fontSize: 28.0, color: Colors.white,fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
+
+              ),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),onPressed: (){
+                  Navigator.pop(context);
+              },
+              )
+              ,backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
+            ),
+            // appBar: AppBar(title: Text("Weekly Mission",
+            //   style: TextStyle(fontFamily: "GmarketSans",fontWeight: FontWeight.bold,fontSize: 25),),
+            // centerTitle: true),
             body: Center(
-                child: SafeArea(
+
+            child: SafeArea(
                     child: Column(
           children: <Widget>[
             SizedBox(
@@ -182,16 +198,26 @@ class _MissionState extends State<Mission> {
                       },
                       icon: const Icon(Icons.refresh, size: 40.0),
                     ))),
-            const SizedBox(
-                height: 40,
-                child: Text(
-                  "Weekly Mission",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                )),
+            Container(
+              alignment: Alignment.centerLeft,
+              height: 100,
+              margin: EdgeInsets.only(top:15,bottom: 10, right: 20, left: 20),
+              child : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("이번주에 함께", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),
+                      Text("학습할 단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
+                  ),
+                  Image.asset("assets/resource/cute_bee.png", width: 80,height: 80,),
+                ],
+              ),
+            ),
             const SizedBox(height: 10),
             SizedBox(
-              height: 270,
+              height: 500,
               width: 330,
               child: Container(
                 decoration: BoxDecoration(
@@ -210,7 +236,7 @@ class _MissionState extends State<Mission> {
                   itemBuilder: (context, i) => Container(
                       // 여기서부터 리스트 요소들 !
                       decoration: BoxDecoration(
-                        color: Colors.amberAccent,
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding: const EdgeInsets.all(10),
@@ -236,7 +262,7 @@ class _MissionState extends State<Mission> {
                                 }
                               }(),
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontFamily: "GmarketSans",fontSize: 20,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -273,58 +299,58 @@ class _MissionState extends State<Mission> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            Stack(alignment: Alignment.center, children: [
-              CircularPercentIndicator(
-                progressColor: Colors.orange,
-                //backgroundColor: Colors.green,
-                  animation: true,
-              percent: ratio,
-              lineWidth: 20
-              ,radius: 290),
-              Container(
-
-                  child: Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //const SizedBox(height: 10,),
-                      /*Text(
-                        "$per %",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),*/
-                      // 여기에 이름 넣어주기 ( ID )
-                      //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
-                      SizedBox(
-                          height: 200,
-                          child: Center(
-                            child: Image.asset(
-                                "assets/resource/bee" + level.toString() + ".png"),
-                          ))
-                    ],
-                  )))
-            ]),
-            Expanded(
-                child: Container(
-
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    //const SizedBox(height: 10,),
-                    Text("Lev.$level    $per %",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ), // 여기에 이름 넣어주기 ( ID )
-                    //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
-                  ],
-                ),
-              ),
-            )),
+            // Stack(alignment: Alignment.center, children: [
+            //   CircularPercentIndicator(
+            //     progressColor: kPrimaryColor,
+            //     //backgroundColor: Colors.green,
+            //       animation: true,
+            //   percent: ratio,
+            //   lineWidth: 20
+            //   ,radius: 290),
+            //   Container(
+            //
+            //       child: Center(
+            //           child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //         children: [
+            //           //const SizedBox(height: 10,),
+            //           /*Text(
+            //             "$per %",
+            //             style: TextStyle(
+            //                 fontSize: 25, fontWeight: FontWeight.bold),
+            //             textAlign: TextAlign.center,
+            //           ),*/
+            //           // 여기에 이름 넣어주기 ( ID )
+            //           //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
+            //           SizedBox(
+            //               height: 200,
+            //               child: Center(
+            //                 child: Image.asset(
+            //                     "assets/resource/bee" + level.toString() + ".png"),
+            //               ))
+            //         ],
+            //       )))
+            // ]),
+            // Expanded(
+            //     child: Container(
+            //
+            //   child: Center(
+            //     child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: [
+            //         //const SizedBox(height: 10,),
+            //         Text("Lev.$level    $per %",
+            //           style:
+            //               TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            //           textAlign: TextAlign.center,
+            //         ), // 여기에 이름 넣어주기 ( ID )
+            //         //이미지 동그랗게 넣기 --> https://sothecode.tistory.com/47
+            //       ],
+            //     ),
+            //   ),
+            // )),
           ],
         ) // Hands on! 여기를 아래 코드로 대체하면 된다.
                     ))));

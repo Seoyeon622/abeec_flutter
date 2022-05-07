@@ -95,6 +95,7 @@ flutter:
      - assets/resource/game_yellow.png
      - assets/resource/idcard_white.png
      - assets/resource/idcard_yellow.png
+     - assets/resource/mission_yellow.png
      - assets/images/
      - assets/resource/
 

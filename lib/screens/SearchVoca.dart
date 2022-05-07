@@ -16,6 +16,7 @@ import '../models/loginUserDB.dart';
 import '../models/voca.dart';
 import '../models/voca_db.dart';
 import '../service/MyLevel.dart';
+import '../constants.dart';
 import 'Mission.dart';
 
 class SearchVoca extends StatefulWidget {
@@ -100,20 +101,26 @@ class _SearchVocaState extends State<SearchVoca> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffF8E77F),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text(
+            "Search Word", style: TextStyle(color: Colors.white, fontSize: 28.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
+
+        ),
         body: SafeArea(
           child: Column(
             children: [
-
               Container(
                 height: 500,
                 //color: Colors.white,
                 child: Stack(alignment: Alignment.topCenter, children: [
-                  Positioned(
-                      child: Image.asset(
-                    'assets/resource/liquid_honey.png',
-                    fit: BoxFit.fitWidth,
-                  )),
+                  // Positioned(
+                  //     child: Image.asset(
+                  //   'assets/resource/liquid_honey.png',
+                  //   fit: BoxFit.fitWidth,
+                  // )),
                   image != null
                       ? Positioned(
                           top: 150,
