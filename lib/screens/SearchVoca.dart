@@ -112,7 +112,7 @@ class _SearchVocaState extends State<SearchVoca> {
             "Search Word", style: TextStyle(color: Colors.white, fontSize: 25.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
           ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back, ),
             color: Colors.white,onPressed: (){
             Navigator.pop(context);
           },
@@ -214,15 +214,15 @@ class _SearchVocaState extends State<SearchVoca> {
                         // side: BorderSide(width: 4, color: Colors.orangeAccent),
                      //   shadowColor: Colors.amber,
                         elevation: 5,
-                        fixedSize: Size(160, 70),
+                        fixedSize: Size(160, 80),
                         shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
+                          borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //Icon(Icons.arrow_back, size: 40,),
+                          Icon(Icons.arrow_back, size: 30,color: Colors.lightGreen,),
                           Text(
                             "다시 찍기",
                             style: TextStyle(
@@ -245,17 +245,17 @@ class _SearchVocaState extends State<SearchVoca> {
                         backgroundColor: Colors.white,
                         primary: Colors.black,
                         textStyle: const TextStyle(fontSize: 25),
-                        fixedSize: Size(160, 70),
+                        fixedSize: Size(160, 80),
                        // shadowColor: Colors.amber,
                         elevation: 5,
                         shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
+                          borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                         // Icon(Icons.search, size: 50),
+                         Icon(Icons.search, size: 30, color: Colors.lightGreen,),
                           Text(
                             "결과보기",
                             style: TextStyle(

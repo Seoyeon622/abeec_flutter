@@ -11,6 +11,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../models/loginUser.dart';
 import '../models/loginUserDB.dart';
 import 'MainPage.dart';
+import '../constants.dart';
+
 
 void main() {
 
@@ -69,23 +71,33 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("게임을 끝낼까요?", style: TextStyle(fontSize: 25.0,
-                      fontFamily: 'NotoSansKR',),),
+                  title: Text("게임을 끝낼까요?", style: TextStyle(fontSize: 20.0,
+                      fontFamily: 'GmarketSans',),textAlign: TextAlign.center,),
                   actions: <Widget>[
-                    FlatButton(
-                        child: Text("네"),
+
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                children :[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom( primary: kPrimaryColor),
+                        child: Text("네", style: TextStyle(fontSize: 10.0,
+                            fontFamily: 'GmarketSans'),),
                         onPressed: ()=>   {
                           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                               builder: (BuildContext context) =>
                                   MainPage()), (route) => false),
                           _unityWidgetController.unload(),
                         }
-                    ),
-                    FlatButton(
-                      child: Text("아니요"),
+                        ,
+                    ), ElevatedButton(
+                    style: ElevatedButton.styleFrom( primary: kPrimaryColor),
+                    child: Text("아니요", style: TextStyle(fontSize: 10.0,
+            fontFamily: 'GmarketSans'),),
                       onPressed: ()=>Navigator.pop(context, true),
                     )
-                  ],
+                     ])
+                     ]
                 )
             );
             return await Future.value(true);

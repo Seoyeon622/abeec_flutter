@@ -140,7 +140,7 @@ class _VocaDetailState extends State<VocaDetail> {
                           color:Colors.white)),
                   Center(
                       child : Container(
-                          padding: EdgeInsets.only(top: 35),
+                          padding: EdgeInsets.only(top: 73),
                           child: Image.asset("assets/resource/cute_bee.png", width: 100,height: 100,)
                       ))
              ]

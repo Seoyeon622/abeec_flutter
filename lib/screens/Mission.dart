@@ -176,8 +176,15 @@ class _MissionState extends State<Mission> {
                 icon: Icon(Icons.arrow_back),onPressed: (){
                   Navigator.pop(context);
               },
-              )
-              ,backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
+              ),backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
+              actions: [
+                IconButton(
+                  onPressed: ()async {
+                    await getMission();
+                  },
+                  icon: Icon(Icons.refresh,size:25.0, color: Colors.white,),
+                )
+              ],
             ),
             // appBar: AppBar(title: Text("Weekly Mission",
             //   style: TextStyle(fontFamily: "GmarketSans",fontWeight: FontWeight.bold,fontSize: 25),),
@@ -187,17 +194,17 @@ class _MissionState extends State<Mission> {
             child: SafeArea(
                     child: Column(
           children: <Widget>[
-            SizedBox(
-                height: 10,
-                child: Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () async {
-                        await getMission();
-
-                      },
-                      icon: const Icon(Icons.refresh, size: 40.0),
-                    ))),
+            // SizedBox(
+            //     height: 10,
+            //     child: Align(
+            //         alignment: Alignment.centerRight,
+            //         child: IconButton(
+            //           onPressed: () async {
+            //             await getMission();
+            //
+            //           },
+            //           icon: const Icon(Icons.refresh, size: 40.0),
+            //         ))),
             Container(
               alignment: Alignment.centerLeft,
               height: 100,
@@ -245,29 +252,7 @@ class _MissionState extends State<Mission> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              () {
-                                if (cameraList.length == 10) {
-                                  return cameraList[i].english.toString() +
-                                      "촬영하기";
-                                } else {
-                                  if (i <= 6) {
-                                    return cameraList[i].english.toString() +
-                                        " 촬영하기 ";
-                                  } else {
-                                    return listeningList[i - 7]
-                                            .english
-                                            .toString() +
-                                        " 듣기 ";
-                                  }
-                                }
-                              }(),
-                              style: const TextStyle(
-                                fontFamily: "NotoSansKR",fontSize: 23,
-                                  fontWeight: FontWeight.bold
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+
                             Icon(
                               () {
                                 if (cameraList.length == 10) {
@@ -292,8 +277,31 @@ class _MissionState extends State<Mission> {
                                   }
                                 }
                               }(), // 들음
-                              color: Colors.white,
-                              size: 24.0,
+                              color: Colors.black,
+                              size: 35.0,
+                            ),
+                            Text(
+                                  () {
+                                if (cameraList.length == 10) {
+                                  return cameraList[i].english.toString() +
+                                      "촬영하기";
+                                } else {
+                                  if (i <= 6) {
+                                    return cameraList[i].english.toString() +
+                                        " 촬영하기 ";
+                                  } else {
+                                    return listeningList[i - 7]
+                                        .english
+                                        .toString() +
+                                        " 듣기 ";
+                                  }
+                                }
+                              }(),
+                              style: const TextStyle(
+                                  fontFamily: "NotoSansKR",fontSize: 23,
+                                  fontWeight: FontWeight.bold
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
                           ])),
                   itemCount: 10,

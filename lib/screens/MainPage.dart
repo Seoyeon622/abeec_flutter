@@ -51,19 +51,6 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Color(0xffFFFFFF),
         body: SafeArea(
           child: Column(children: [
-
-            // Align(alignment: Alignment.centerRight,
-            //   child:Container(
-            //     margin: EdgeInsets.all(10.0),
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(50),
-            //     ),
-            //     child:IconButton(
-            //       onPressed: (){Get.to(LoginPage());},
-            //       icon: Icon(Icons.logout,size:25.0),
-            //     )
-            // ),),
             Stack(
                 children: [
             Container(
@@ -92,11 +79,9 @@ class _MainPageState extends State<MainPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(40.0),
                   child: Image.asset("assets/resource/front_bee.png", fit: BoxFit.cover,),
-
                 ),
               ),onTap: (){
-                    Get.to(MyPage());
-                  }
+                    Get.to(MyPage());}
                   )
             ),]
             ),
@@ -110,18 +95,20 @@ class _MainPageState extends State<MainPage> {
               margin: EdgeInsets.only(top: 10,left: 10, right: 10),
               // margin: EdgeInsets.only(top:10,left: 10, right: 10),
               width: 450,
-              height: 475,
+               height: 480,
               child:
               Stack(
                 children: [
+               // Expanded(
+                // child:
                   GridView.count(
                  // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 4 / 5,
                   mainAxisSpacing: 20,
+                  padding: EdgeInsets.only(top:10, left: 5, right:5),
                   crossAxisSpacing: 10,
                 children: [
-
                   InkWell(
                   child: Container(
                       padding: EdgeInsets.only(top:20),
@@ -142,17 +129,15 @@ class _MainPageState extends State<MainPage> {
                               child: Column(
                               children:[
                               Text("단어찾기", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
-                              ,Text("사진을 찍고 어떤 단어인지 알아볼까요?",
+                              ,Text("사진을 찍고 \n 어떤 단어인지 알아볼까요?",
                             style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                           ])
                           )
-
                         ],
                       ),
                     ),
                 onTap: (){
-                  Get.to(SearchVoca());
-                },
+                  Get.to(SearchVoca());},
                 ),
                   InkWell(
                     child: Container(
@@ -210,7 +195,6 @@ class _MainPageState extends State<MainPage> {
                                       style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                                   ])
                           )
-
                         ],
                       ),
                     ),
@@ -242,7 +226,6 @@ class _MainPageState extends State<MainPage> {
                                       style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR",),textAlign: TextAlign.center,)
                                   ])
                           )
-
                         ],
                       ),
                     ),
@@ -253,65 +236,11 @@ class _MainPageState extends State<MainPage> {
                 ]
                 ),
               ]
-            ),
+                )
+           // ),
             ),
           ],
           ),
-              // child: Stack(
-              //   alignment: Alignment.topCenter,
-              //   children: [
-              //     Positioned(
-              //       top: 18,
-              //       child: IconButton(
-              //         splashColor: Colors.orange,
-              //           onPressed: () {
-              //             Get.to(SearchVoca());
-              //             setState(() {
-              //               Image.asset('assets/resource/camera_white.png');
-              //             });
-              //           },
-              //           iconSize: i_Size,
-              //           icon: Image.asset('assets/resource/camera.png')),
-              //     ),
-              //     Positioned(
-              //       top: 78,
-              //       left: 205,
-              //       child: RaisedButton(
-              //           onPressed: () {
-              //             // Get.to(MyVocaList());
-              //             setState(() {
-              //               click = !click;
-              //             });
-              //           },
-              //          // iconSize: i_Size,
-              //           child: Image.asset((click == true) ? yellowicon : whiteicon)
-              //
-              //
-              //       ),
-              //     ),
-              //     Positioned(
-              //       top: 78,
-              //       right: 205,
-              //       child: IconButton(
-              //           onPressed: () {
-              //             Get.to(Mission());
-              //           },
-              //           iconSize: i_Size,
-              //           icon:
-              //               Image.asset('assets/resource/user.png')),
-              //     ),
-              //     Positioned(
-              //       child: IconButton(
-              //             onPressed: () {
-              //               Get.to(UnityDemoScreen());
-              //             },
-              //             iconSize: i_Size,
-              //             icon: Image.asset('assets/resource/game.png')),
-              //       top: 138,
-              //     )
-              //   ],
-              // ),
-
         ),
     );
 

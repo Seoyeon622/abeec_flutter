@@ -50,10 +50,12 @@ class _VocaListState extends State<MyVocaList> {
         ),
         backgroundColor: Color(0xFFFDFDFD),
         body: SafeArea(
-          child: ListView(children: [
+          child:
+          ListView(
+            children: [
             Container(
               alignment: Alignment.centerLeft,
-              height: 100,
+              //height: 100,
               margin: EdgeInsets.only(top:10,bottom: 5, right: 20, left: 20),
               child : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,6 +73,7 @@ class _VocaListState extends State<MyVocaList> {
               ),
             ),
             GridView.builder(
+              scrollDirection: Axis.vertical,
               itemCount: vocaList.length,
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -130,7 +133,8 @@ class _VocaListState extends State<MyVocaList> {
                 );
               },
             ),
-          ],),
+          ],
+          ),
         )
     );
   }
