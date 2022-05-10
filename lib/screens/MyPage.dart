@@ -68,7 +68,7 @@ class _MyPageState extends State<MyPage> {
   int? level;
   int per =0;
   double ratio=0;
-
+  String userId = "";
   @override
   initState() {
     Future.delayed(Duration.zero, () async {
@@ -76,6 +76,7 @@ class _MyPageState extends State<MyPage> {
       await cameraMissionDB.fixed_camera_database;
       await listeningMissionDB.fixed_listening_database;
       user = await loginUserDB().user();
+      userId = user?.user_id??"";
       level = user?.level??0;
       score = user?.score??0;
       exp = (6 + 4*(level!-1));
@@ -109,17 +110,24 @@ class _MyPageState extends State<MyPage> {
           fontWeight: FontWeight.bold,),
         ),
         backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white,),onPressed: (){
+            Navigator.pop(context);
+          },
+          ),
         actions: [
           IconButton(
             onPressed: (){Get.to(LoginPage());},
-            icon: Icon(Icons.logout,size:25.0),
+            icon: Icon(Icons.logout,size:25.0, color: Colors.white,),
           )
         ],
       ),
         body: SafeArea(
           child: Column(children: [
             const SizedBox(height: 40.0,),
-            Text("xxx님의 학습현황이에요", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 40, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
+            Text(userId + " 님의", style: TextStyle(fontFamily: "GmarketSans",fontSize: 37, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
+            const SizedBox(height: 20.0,),
+            Text("학습현황이에요!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 37, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
 
             //Align(alignment: Alignment.centerRight, child:
             //   Container(

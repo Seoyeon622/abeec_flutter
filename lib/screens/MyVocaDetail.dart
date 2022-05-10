@@ -63,7 +63,7 @@ class _VocaDetailState extends State<VocaDetail> {
       backgroundColor: kPrimaryColor,
       appBar: AppBar(
         title: const Text(
-          "My Voca Detail", style: TextStyle(color: Colors.white, fontSize: 28.0,
+          "My Voca", style: TextStyle(color: Colors.white, fontSize: 28.0,
             fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
@@ -109,7 +109,7 @@ class _VocaDetailState extends State<VocaDetail> {
         //   alignment: Alignment.center,
         //  // width: 450, height: 400,
         //  // color: Colors.pink,
-          padding: EdgeInsets.only(top:50),
+          padding: EdgeInsets.only(top:30),
           child:
           Column(
               //  mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _VocaDetailState extends State<VocaDetail> {
                 children: [
                   Text("\"따라 읽어볼까요?\"", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontSize: 35,fontWeight: FontWeight.bold,fontFamily: "GmarketSans")),
                   const SizedBox(height: 20.0,),
-                  Image(image:AssetImage(imagePath),width: 350, height: 250,),
+                  Image(image:AssetImage(imagePath),width: 350, height: 220,),
                   Center(
                     child : Column(
                       children:[
@@ -140,7 +140,7 @@ class _VocaDetailState extends State<VocaDetail> {
                           color:Colors.white)),
                   Center(
                       child : Container(
-                          padding: EdgeInsets.only(top: 50),
+                          padding: EdgeInsets.only(top: 35),
                           child: Image.asset("assets/resource/cute_bee.png", width: 100,height: 100,)
                       ))
              ]

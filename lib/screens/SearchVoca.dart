@@ -212,6 +212,7 @@ class _SearchVocaState extends State<SearchVoca> {
                         backgroundColor: Colors.white,
                         textStyle: const TextStyle(fontSize: 25),
                         // side: BorderSide(width: 4, color: Colors.orangeAccent),
+                     //   shadowColor: Colors.amber,
                         elevation: 5,
                         fixedSize: Size(160, 70),
                         shape: new RoundedRectangleBorder(
@@ -245,6 +246,7 @@ class _SearchVocaState extends State<SearchVoca> {
                         primary: Colors.black,
                         textStyle: const TextStyle(fontSize: 25),
                         fixedSize: Size(160, 70),
+                       // shadowColor: Colors.amber,
                         elevation: 5,
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0),

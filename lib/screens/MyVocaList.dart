@@ -61,8 +61,10 @@ class _VocaListState extends State<MyVocaList> {
                   Column(
                 crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("지금까지 학습한", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),
-                  Text("단어들이에요", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
+                  Text("지금까지 학습한", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold
+                  //,backgroundColor: Colors.lightBlueAccent
+                  )),
+                  Text("단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
               ),
                   Image.asset("assets/resource/cute_bee.png", width: 90,height: 90,),
               ],

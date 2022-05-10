@@ -263,7 +263,9 @@ class _MissionState extends State<Mission> {
                                 }
                               }(),
                               style: const TextStyle(
-                                fontFamily: "GmarketSans",fontSize: 25,fontWeight: FontWeight.bold),
+                                fontFamily: "NotoSansKR",fontSize: 23,
+                                  fontWeight: FontWeight.bold
+                              ),
                               textAlign: TextAlign.center,
                             ),
                             Icon(

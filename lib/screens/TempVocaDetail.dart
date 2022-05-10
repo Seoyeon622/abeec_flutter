@@ -113,11 +113,16 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                 padding: EdgeInsets.fromLTRB(10, 5, 10, 20),
 
                 //color: Colors.white,
-                width: 365.0,
-                height: 600.0,
+                width: 370.0,
+                height: 620.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(50.0)
+                    borderRadius: BorderRadius.circular(60.0),
+                    boxShadow: [
+                      BoxShadow(color: Colors.grey, offset: Offset(
+                          0.0, 1.0), blurRadius: 6.0,)
+                    ]
+
                 ),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -126,11 +131,11 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                       const SizedBox(height: 20.0,),
                       Text(english, style: TextStyle(fontFamily: "GmarketSans",fontSize: 40,fontWeight: FontWeight.bold),),
                       Text(korean, style: TextStyle(fontFamily: "GmarketSans",fontSize: 38),),
-                      const SizedBox(height: 10.0,),
+                      const SizedBox(height: 40.0,),
                       //Text("단어를 단어장에", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 38, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
                       // Text("단어장에 저장할까요?", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 35, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children:[
                           ElevatedButton(onPressed: () { saveDB(); },
                               style: ElevatedButton.styleFrom(
@@ -138,7 +143,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                                 onPrimary: Colors.black,
                                 textStyle: const TextStyle(fontSize: 15, fontFamily: "GmarketSans"),
                                 fixedSize: Size(170,90),
-                                elevation: 10,
+                                elevation: 5,
                                 shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(40.0),
                                 ),
@@ -149,7 +154,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                                   Icon(Icons.check,size: 30, color: Colors.lightGreen,),
                                   Text(
                                     "단어 저장",
-                                    style: TextStyle(fontFamily: 'NotoSansKR', fontWeight: FontWeight.bold,fontSize: 30),
+                                    style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 30),
                                   )
                                 ],
                               ), ),
@@ -160,7 +165,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                               onPrimary: Colors.black,
                               textStyle: const TextStyle(fontSize: 15, fontFamily: 'GmarketSans',),
                               fixedSize: Size(170, 90),
-                              elevation: 10,
+                              elevation: 5,
                               shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(40.0),
                               ),
@@ -171,7 +176,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                                 Icon(Icons.replay_rounded,size: 30, color: Colors.green,),
                                 Text(
                                   "다시 찍기",
-                                  style: TextStyle(fontFamily: 'NotoSansKR', fontWeight: FontWeight.bold,fontSize: 30),
+                                  style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 30),
                                 )
                               ],
                             ), )
