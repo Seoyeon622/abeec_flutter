@@ -169,8 +169,8 @@ class _MissionState extends State<Mission> {
         home: Scaffold(
             appBar: AppBar(
               title: const Text(
-                "Weekly Mission", style: TextStyle(fontSize: 28.0, color: Colors.white,fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
-
+                "Weekly Mission", style: TextStyle(fontSize: 28.0, color: Colors.white,
+                fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
               ),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),onPressed: (){
@@ -215,29 +215,30 @@ class _MissionState extends State<Mission> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 5),
             SizedBox(
               height: 500,
-              width: 330,
+              width: 450,
               child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 4,
-                      color: Colors.orange,
-                    ),
-                    //color: Colors.amberAccent,
-                    borderRadius: BorderRadius.circular(10)),
+                // decoration: BoxDecoration(
+                //    // border: Border.all(width: 4, color: Colors.orange,),
+                //     color: Colors.amberAccent,
+                //     borderRadius: BorderRadius.circular(10)),
                 child: GridView.builder(
                   padding: const EdgeInsets.all(10),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 500,
-                    mainAxisExtent: 60,
+                    mainAxisExtent: 70,
                   ),
                   itemBuilder: (context, i) => Container(
                       // 여기서부터 리스트 요소들 !
                       decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(10),
+                        color: Color(0xFFfbeccf),
+                        borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, offset: Offset(
+                                0.0, 1.0), blurRadius: 3.0,)
+                          ]
                       ),
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.all(5),
@@ -262,8 +263,7 @@ class _MissionState extends State<Mission> {
                                 }
                               }(),
                               style: const TextStyle(
-                                fontFamily: "GmarketSans",fontSize: 20,
-                              ),
+                                fontFamily: "GmarketSans",fontSize: 25,fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                             Icon(

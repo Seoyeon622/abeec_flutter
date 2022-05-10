@@ -15,6 +15,7 @@ import '../models/loginUserDB.dart';
 import 'JoinPage.dart';
 import 'LoginPage.dart';
 import 'Mission.dart';
+import 'MyPage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -50,6 +51,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Color(0xffFFFFFF),
         body: SafeArea(
           child: Column(children: [
+
             // Align(alignment: Alignment.centerRight,
             //   child:Container(
             //     margin: EdgeInsets.all(10.0),
@@ -62,33 +64,65 @@ class _MainPageState extends State<MainPage> {
             //       icon: Icon(Icons.logout,size:25.0),
             //     )
             // ),),
+            Stack(
+                children: [
             Container(
-              padding: EdgeInsets.only(top: 30,),
+              padding: EdgeInsets.only(top: 20,),
               alignment: Alignment.center,
-              height: 200,
+              height: 180,
               child: Text("AbeeC", style: TextStyle(fontFamily: "Logo", fontSize: 80)),
               decoration: BoxDecoration(color: kPrimaryColor, borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(150), bottomRight: Radius.circular(150),
               )),
             ),
+              Center(
+                  child :InkWell(
+                  child:Container(
+                width: 75,height: 75,margin: EdgeInsets.only(top:145),
+                alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(40),
+                        // border:Border.all(color:Colors.yellow,width:5),
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey, offset: Offset(
+                              3.0, 3.0), blurRadius: 5.0,)
+                        ]
+                    ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(40.0),
+                  child: Image.asset("assets/resource/front_bee.png", fit: BoxFit.cover,),
+
+                ),
+              ),onTap: (){
+                    Get.to(MyPage());
+                  }
+                  )
+            ),]
+            ),
+            // 여기가 메인 아이콘들
             Container(
               decoration: BoxDecoration(
-               // color: Colors.orange,
-                border:Border.all(color: Colors.white,width:2)
+             //   color: Colors.white,
+                // border:Border.all(color: Colors.red,width:2)
               ),
-              padding: EdgeInsets.only(top:20, left: 10,right: 10),
+              padding: EdgeInsets.only(top:10, left: 10,right: 10),
               margin: EdgeInsets.only(top: 10,left: 10, right: 10),
               // margin: EdgeInsets.only(top:10,left: 10, right: 10),
-              width: 400,
-              height: 500,
-              child: Stack(
-                children: [GridView.count(
+              width: 450,
+              height: 475,
+              child:
+              Stack(
+                children: [
+                  GridView.count(
                  // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 4 / 5,
                   mainAxisSpacing: 20,
                   crossAxisSpacing: 10,
-                children: [ InkWell(
+                children: [
+
+                  InkWell(
                   child: Container(
                       padding: EdgeInsets.only(top:20),
                       decoration: BoxDecoration(
@@ -97,19 +131,19 @@ class _MainPageState extends State<MainPage> {
                           // border:Border.all(color:Colors.yellow,width:5),
                           boxShadow: [
                             BoxShadow(color: Colors.grey, offset: Offset(
-                                0.0, 1.0), blurRadius: 6.0,)
+                                3.0, 3.0), blurRadius: 6.0,)
                           ]
                       ),
                       child: Column(
                         children: [
                           Image.asset("assets/resource/camera_yellow.png", height: 100, width: 100,),
                           Container(
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: 10),
                               child: Column(
                               children:[
                               Text("단어찾기", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                               ,Text("사진을 찍고 어떤 단어인지 알아볼까요?",
-                            style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "GmarketSans", ),)
+                            style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                           ])
                           )
 
@@ -136,12 +170,12 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           Image.asset("assets/resource/book_yellow.png", height: 100, width: 100,),
                           Container(
-                              padding: EdgeInsets.only(top: 20),
+                              padding: EdgeInsets.only(top: 10),
                               child: Column(
                                   children:[
                                     Text("단어장", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                                     ,Text("지금까지 학습한 단어들이에요",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "GmarketSans", ),)
+                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                                   ])
                           )
 
@@ -168,12 +202,12 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           Image.asset("assets/resource/game_yellow.png", height: 100, width: 100,),
                           Container(
-                              padding: EdgeInsets.only(top: 20),
+                              padding: EdgeInsets.only(top: 10),
                               child: Column(
                                   children:[
                                     Text("게임", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
-                                    ,Text("게임을 통해 단어를 기억해 볼까요?",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "GmarketSans", ),)
+                                    ,Text("게임을 통해 단어를 외워봐요",
+                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                                   ])
                           )
 
@@ -200,12 +234,12 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           Image.asset("assets/resource/mission_yellow.png", height: 100, width: 100,),
                           Container(
-                              padding: EdgeInsets.only(top: 20),
+                              padding: EdgeInsets.only(top: 10),
                               child: Column(
                                   children:[
                                     Text("미션", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                                     ,Text("이번 주의 미션을 확인해 봐요",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "GmarketSans", ),)
+                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR",),textAlign: TextAlign.center,)
                                   ])
                           )
 

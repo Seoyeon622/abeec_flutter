@@ -40,6 +40,12 @@ class _VocaListState extends State<MyVocaList> {
           title: const Text(
             "Voca List", style: TextStyle(fontSize: 28.0, color: Colors.white,fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
           ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,onPressed: (){
+            Navigator.pop(context);
+          },
+          ),
           backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
         ),
         backgroundColor: Color(0xFFFDFDFD),
@@ -48,15 +54,15 @@ class _VocaListState extends State<MyVocaList> {
             Container(
               alignment: Alignment.centerLeft,
               height: 100,
-              margin: EdgeInsets.only(top:15,bottom: 10, right: 20, left: 20),
+              margin: EdgeInsets.only(top:10,bottom: 5, right: 20, left: 20),
               child : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                 crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("지금까지 학습한", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),
-                  Text("단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
+                  Text("지금까지 학습한", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),
+                  Text("단어들이에요", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
               ),
                   Image.asset("assets/resource/cute_bee.png", width: 90,height: 90,),
               ],
@@ -67,7 +73,7 @@ class _VocaListState extends State<MyVocaList> {
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
+                childAspectRatio: 3 / 4,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
               ),
@@ -106,14 +112,14 @@ class _VocaListState extends State<MyVocaList> {
                           ),
 
                           Container(
-                            height: 60,
+                            height: 80,
                             alignment: Alignment.center,
                             //color: Colors.amber.shade300,
                             child: Text(
                               vocaList[index].english.toString(),
-                              style: TextStyle(fontSize: 20.0,
+                              style: TextStyle(fontSize: 30.0,
                                   fontFamily: 'NotoSansKR',
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold),textAlign: TextAlign.center,
                             ),
                           ),
                         ],
