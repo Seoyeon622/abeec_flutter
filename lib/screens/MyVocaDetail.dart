@@ -63,7 +63,7 @@ class _VocaDetailState extends State<VocaDetail> {
       backgroundColor: kPrimaryColor,
       appBar: AppBar(
         title: const Text(
-          "My Voca", style: TextStyle(color: Colors.white, fontSize: 28.0,
+          "My Voca", style: TextStyle(color: Colors.white, fontSize: 25.0,
             fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
@@ -115,14 +115,14 @@ class _VocaDetailState extends State<VocaDetail> {
               //  mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("\"따라 읽어볼까요?\"", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontSize: 35,fontWeight: FontWeight.bold,fontFamily: "GmarketSans")),
+                  Text("\"따라 읽어볼까요?\"", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontSize: 30,fontWeight: FontWeight.bold,fontFamily: "GmarketSans")),
                   const SizedBox(height: 20.0,),
                   Image(image:AssetImage(imagePath),width: 350, height: 220,),
                   Center(
                     child : Column(
                       children:[
-                  Text(english, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 40,fontWeight: FontWeight.bold),),
-                  Text(korean, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 38, fontWeight: FontWeight.bold),),]
+                  Text(english, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 35,fontWeight: FontWeight.bold),),
+                  Text(korean, style: TextStyle(fontFamily: "NotoSansKR",fontSize: 33, fontWeight: FontWeight.bold),),]
                     ),
                   ),
                  const SizedBox(height: 10.0,),

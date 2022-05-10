@@ -89,7 +89,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: AppBar(
-      title: Text("단어 상세 화면", style: TextStyle(fontSize: 28.0, color: Colors.white,fontFamily: 'GmarketSans',fontWeight: FontWeight.bold,),),
+      title: Text("My Voca", style: TextStyle(fontSize: 25.0, color: Colors.white,fontFamily: 'GmarketSans',fontWeight: FontWeight.bold,),),
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             color: Colors.white,onPressed: (){
@@ -129,8 +129,8 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                     children: [
                       Image(image:AssetImage(imagePath)),
                       const SizedBox(height: 20.0,),
-                      Text(english, style: TextStyle(fontFamily: "GmarketSans",fontSize: 40,fontWeight: FontWeight.bold),),
-                      Text(korean, style: TextStyle(fontFamily: "GmarketSans",fontSize: 38),),
+                      Text(english, style: TextStyle(fontFamily: "GmarketSans",fontSize: 35,fontWeight: FontWeight.bold),),
+                      Text(korean, style: TextStyle(fontFamily: "GmarketSans",fontSize: 33),),
                       const SizedBox(height: 40.0,),
                       //Text("단어를 단어장에", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 38, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
                       // Text("단어장에 저장할까요?", style: TextStyle(backgroundColor: Color(0xFFc7e6f9),fontFamily: "GmarketSans",fontSize: 35, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
@@ -154,7 +154,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                                   Icon(Icons.check,size: 30, color: Colors.lightGreen,),
                                   Text(
                                     "단어 저장",
-                                    style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 30),
+                                    style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 25),
                                   )
                                 ],
                               ), ),
@@ -176,7 +176,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                                 Icon(Icons.replay_rounded,size: 30, color: Colors.green,),
                                 Text(
                                   "다시 찍기",
-                                  style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 30),
+                                  style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 25),
                                 )
                               ],
                             ), )

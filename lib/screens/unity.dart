@@ -69,10 +69,11 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("Do you want to exit the app?"),
+                  title: Text("게임을 끝낼까요?", style: TextStyle(fontSize: 25.0,
+                      fontFamily: 'NotoSansKR',),),
                   actions: <Widget>[
                     FlatButton(
-                        child: Text("Yes"),
+                        child: Text("네"),
                         onPressed: ()=>   {
                           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                               builder: (BuildContext context) =>
@@ -81,7 +82,7 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
                         }
                     ),
                     FlatButton(
-                      child: Text("No"),
+                      child: Text("아니요"),
                       onPressed: ()=>Navigator.pop(context, true),
                     )
                   ],

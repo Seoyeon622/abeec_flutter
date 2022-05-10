@@ -143,7 +143,7 @@ class _MainPageState extends State<MainPage> {
                               children:[
                               Text("단어찾기", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                               ,Text("사진을 찍고 어떤 단어인지 알아볼까요?",
-                            style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
+                            style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                           ])
                           )
 
@@ -175,7 +175,7 @@ class _MainPageState extends State<MainPage> {
                                   children:[
                                     Text("단어장", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                                     ,Text("지금까지 학습한 단어들이에요",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
+                                      style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                                   ])
                           )
 
@@ -207,7 +207,7 @@ class _MainPageState extends State<MainPage> {
                                   children:[
                                     Text("게임", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                                     ,Text("게임을 통해 단어를 외워봐요",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
+                                      style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR", ),textAlign: TextAlign.center,)
                                   ])
                           )
 
@@ -239,7 +239,7 @@ class _MainPageState extends State<MainPage> {
                                   children:[
                                     Text("미션", style: TextStyle(fontSize: 25.0,fontFamily: "GmarketSans",fontWeight: FontWeight.bold),)
                                     ,Text("이번 주의 미션을 확인해 봐요",
-                                      style: TextStyle(fontSize: 15.0,color: kTextColor,fontFamily: "NotoSansKR",),textAlign: TextAlign.center,)
+                                      style: TextStyle(fontSize: 10.0,color: kTextColor,fontFamily: "NotoSansKR",),textAlign: TextAlign.center,)
                                   ])
                           )
 

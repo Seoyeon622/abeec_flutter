@@ -208,8 +208,8 @@ class _MissionState extends State<Mission> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("이번주에 함께", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),
-                      Text("학습할 단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
+                      Text("이번주에 함께", style: TextStyle(fontFamily: "GmarketSans",fontSize: 25, fontWeight:FontWeight.bold)),
+                      Text("학습할 단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 25, fontWeight:FontWeight.bold)),],
                   ),
                   Image.asset("assets/resource/cute_bee.png", width: 80,height: 80,),
                 ],

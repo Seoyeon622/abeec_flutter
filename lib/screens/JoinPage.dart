@@ -49,8 +49,8 @@ class _JoinPageState extends State<JoinPage> {
             margin: EdgeInsets.only(top:90),
             child : Column(
               children: [
-                Text("Welcome!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 50, fontWeight:FontWeight.bold)),
-                Text("회원 가입 후 AbeeC와 함께 해요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 20, color: kTextColor)),
+                Text("Welcome!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 45, fontWeight:FontWeight.bold)),
+                Text("회원 가입 후 AbeeC와 함께 해요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 15, color: kTextColor)),
               ],
             )
 
@@ -86,7 +86,7 @@ class _JoinPageState extends State<JoinPage> {
 
                 }
               },
-              child: const Text("가입하기", style: TextStyle(fontFamily: "GmarketSans", fontSize: 20, fontWeight:FontWeight.bold),),
+              child: const Text("가입하기", style: TextStyle(fontFamily: "GmarketSans", fontSize: 15, fontWeight:FontWeight.bold),),
               style: ElevatedButton.styleFrom(
                   primary: kPrimaryColor,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),minimumSize: Size(280, 60)
               ),

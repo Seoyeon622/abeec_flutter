@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(20)),
             title: Column(
               children: <Widget>[
-                new Text("로그인 실패",style: TextStyle(fontFamily: "GmarketSans", fontSize: 20)),
+                new Text("로그인 실패",style: TextStyle(fontFamily: "GmarketSans", fontSize: 15)),
               ],
             ),
             content: Column(
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Get.back();
                   },
-                  child: Text("확인", style: TextStyle(fontFamily: "GmarketSans", fontSize: 20, color: kPrimaryColor))),
+                  child: Text("확인", style: TextStyle(fontFamily: "GmarketSans", fontSize: 15, color: kPrimaryColor))),
             ],
           );
         });

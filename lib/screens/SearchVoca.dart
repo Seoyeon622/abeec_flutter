@@ -109,7 +109,7 @@ class _SearchVocaState extends State<SearchVoca> {
         backgroundColor: kPrimaryColor,
         appBar: AppBar(
           title: const Text(
-            "Search Word", style: TextStyle(color: Colors.white, fontSize: 28.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
+            "Search Word", style: TextStyle(color: Colors.white, fontSize: 25.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -210,7 +210,7 @@ class _SearchVocaState extends State<SearchVoca> {
                       style: OutlinedButton.styleFrom(
                         primary: Colors.black,
                         backgroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 25),
+                        textStyle: const TextStyle(fontSize: 20),
                         // side: BorderSide(width: 4, color: Colors.orangeAccent),
                      //   shadowColor: Colors.amber,
                         elevation: 5,
@@ -226,7 +226,7 @@ class _SearchVocaState extends State<SearchVoca> {
                           Text(
                             "다시 찍기",
                             style: TextStyle(
-                                fontFamily: 'GmarketSans', fontSize: 30, fontWeight: FontWeight.bold
+                                fontFamily: 'GmarketSans', fontSize: 25, fontWeight: FontWeight.bold
                                 //backgroundColor: Color(0xFFe4cdee)
                             ),
                           )
@@ -259,7 +259,7 @@ class _SearchVocaState extends State<SearchVoca> {
                           Text(
                             "결과보기",
                             style: TextStyle(
-                                fontFamily: 'GmarketSans', fontSize: 30, fontWeight: FontWeight.bold
+                                fontFamily: 'GmarketSans', fontSize: 25, fontWeight: FontWeight.bold
                                 //backgroundColor: Color(0xFFf8d2d2)
                             ),
                           )

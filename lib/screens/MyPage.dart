@@ -104,7 +104,7 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         title: const Text(
           "My page", style: TextStyle(
-          fontSize: 28.0,
+          fontSize: 25.0,
           color: Colors.white,
           fontFamily: 'GmarketSans',
           fontWeight: FontWeight.bold,),
@@ -125,9 +125,9 @@ class _MyPageState extends State<MyPage> {
         body: SafeArea(
           child: Column(children: [
             const SizedBox(height: 40.0,),
-            Text(userId + " 님의", style: TextStyle(fontFamily: "GmarketSans",fontSize: 37, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
+            Text(userId + " 님의", style: TextStyle(fontFamily: "GmarketSans",fontSize: 32, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
             const SizedBox(height: 20.0,),
-            Text("학습현황이에요!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 37, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
+            Text("학습현황이에요!", style: TextStyle(fontFamily: "GmarketSans",fontSize: 32, fontWeight:FontWeight.bold),textAlign: TextAlign.center,),
 
             //Align(alignment: Alignment.centerRight, child:
             //   Container(

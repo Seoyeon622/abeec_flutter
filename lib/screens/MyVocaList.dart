@@ -38,7 +38,7 @@ class _VocaListState extends State<MyVocaList> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Voca List", style: TextStyle(fontSize: 28.0, color: Colors.white,fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
+            "Voca List", style: TextStyle(fontSize: 25.0, color: Colors.white,fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -61,10 +61,10 @@ class _VocaListState extends State<MyVocaList> {
                   Column(
                 crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("지금까지 학습한", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold
+                  Text("지금까지 학습한", style: TextStyle(fontFamily: "GmarketSans",fontSize: 25, fontWeight:FontWeight.bold
                   //,backgroundColor: Colors.lightBlueAccent
                   )),
-                  Text("단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 30, fontWeight:FontWeight.bold)),],
+                  Text("단어들이에요", style: TextStyle(fontFamily: "GmarketSans",fontSize: 25, fontWeight:FontWeight.bold)),],
               ),
                   Image.asset("assets/resource/cute_bee.png", width: 90,height: 90,),
               ],
@@ -119,7 +119,7 @@ class _VocaListState extends State<MyVocaList> {
                             //color: Colors.amber.shade300,
                             child: Text(
                               vocaList[index].english.toString(),
-                              style: TextStyle(fontSize: 30.0,
+                              style: TextStyle(fontSize: 25.0,
                                   fontFamily: 'NotoSansKR',
                                   fontWeight: FontWeight.bold),textAlign: TextAlign.center,
                             ),
