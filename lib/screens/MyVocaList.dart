@@ -51,7 +51,7 @@ class _VocaListState extends State<MyVocaList> {
         backgroundColor: Color(0xFFFDFDFD),
         body: SafeArea(
           child:
-          ListView(
+          Column(
             children: [
             Container(
               alignment: Alignment.centerLeft,
@@ -62,7 +62,7 @@ class _VocaListState extends State<MyVocaList> {
                 children: [
                   Column(
                 crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+                children: const [
                   Text("지금까지 학습한", style: TextStyle(fontFamily: "GmarketSans",fontSize: 25, fontWeight:FontWeight.bold
                   //,backgroundColor: Colors.lightBlueAccent
                   )),
@@ -72,6 +72,9 @@ class _VocaListState extends State<MyVocaList> {
               ],
               ),
             ),
+            Flexible(
+              fit: FlexFit.tight,
+              child:
             GridView.builder(
               scrollDirection: Axis.vertical,
               itemCount: vocaList.length,
@@ -79,7 +82,7 @@ class _VocaListState extends State<MyVocaList> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 3 / 4,
-                mainAxisSpacing: 10,
+                mainAxisSpacing: 8,
                 crossAxisSpacing: 5,
               ),
               itemBuilder: (BuildContext context, int index) {
@@ -98,8 +101,8 @@ class _VocaListState extends State<MyVocaList> {
                                 0.0, 1.0), blurRadius: 6.0,)
                           ]
                       ),
-                      width: 800.0,
-                      height: 200.0,
+                      // width: 800.0,
+                      // height: 150.0,
                       // color: Colors.amberAccent,
                       padding: EdgeInsets.all(2.0),
                       margin: EdgeInsets.all(3.0),
@@ -112,12 +115,12 @@ class _VocaListState extends State<MyVocaList> {
                             child: Image.asset(
                               "assets/images/" +
                                   vocaList[index].english.toString() + ".jpg",
-                              width: 500.0,
+                             // width: 1000.0,
                             ),
                           ),
 
                           Container(
-                            height: 80,
+                           // height: 60,
                             alignment: Alignment.center,
                             //color: Colors.amber.shade300,
                             child: Text(
@@ -132,7 +135,7 @@ class _VocaListState extends State<MyVocaList> {
                     )
                 );
               },
-            ),
+            ),),
           ],
           ),
         )

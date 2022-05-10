@@ -226,7 +226,7 @@ class _SearchVocaState extends State<SearchVoca> {
                           Text(
                             "다시 찍기",
                             style: TextStyle(
-                                fontFamily: 'GmarketSans', fontSize: 25, fontWeight: FontWeight.bold
+                                fontFamily: 'GmarketSans', fontSize: 22, fontWeight: FontWeight.bold
                                 //backgroundColor: Color(0xFFe4cdee)
                             ),
                           )
@@ -259,7 +259,7 @@ class _SearchVocaState extends State<SearchVoca> {
                           Text(
                             "결과보기",
                             style: TextStyle(
-                                fontFamily: 'GmarketSans', fontSize: 25, fontWeight: FontWeight.bold
+                                fontFamily: 'GmarketSans', fontSize: 22, fontWeight: FontWeight.bold
                                 //backgroundColor: Color(0xFFf8d2d2)
                             ),
                           )
