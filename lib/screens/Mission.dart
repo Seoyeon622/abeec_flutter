@@ -169,7 +169,7 @@ class _MissionState extends State<Mission> {
         home: Scaffold(
             appBar: AppBar(
               title: const Text(
-                "Weekly Mission", style: TextStyle(fontSize: 28.0, color: Colors.white,
+                "Weekly Mission", style: TextStyle(fontSize: 22.0, color: Colors.white,
                 fontFamily: 'GmarketSans', fontWeight: FontWeight.bold, ),
               ),
               leading: IconButton(
@@ -241,7 +241,7 @@ class _MissionState extends State<Mission> {
                       // 여기서부터 리스트 요소들 !
                       decoration: BoxDecoration(
                         color: Color(0xFFfbeccf),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(color: Colors.grey, offset: Offset(
                                 0.0, 1.0), blurRadius: 3.0,)
@@ -252,7 +252,6 @@ class _MissionState extends State<Mission> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-
                             Icon(
                               () {
                                 if (cameraList.length == 10) {

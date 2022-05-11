@@ -109,7 +109,7 @@ class _SearchVocaState extends State<SearchVoca> {
         backgroundColor: kPrimaryColor,
         appBar: AppBar(
           title: const Text(
-            "Search Word", style: TextStyle(color: Colors.white, fontSize: 25.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
+            "Search Voca", style: TextStyle(color: Colors.white, fontSize: 25.0, fontFamily: 'GmarketSans', fontWeight: FontWeight.bold),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, ),

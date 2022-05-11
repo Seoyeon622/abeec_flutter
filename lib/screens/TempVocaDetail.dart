@@ -173,7 +173,7 @@ class _TempVocaDetail extends State<TempVocaDetail> {
                             child:Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.replay_rounded,size: 30, color: Colors.green,),
+                                Icon(Icons.replay_rounded,size: 30, color: Colors.lightGreen,),
                                 Text(
                                   "다시 찍기",
                                   style: TextStyle(fontFamily: 'GmarketSans', fontWeight: FontWeight.bold,fontSize: 25),
