@@ -68,7 +68,7 @@ class _VocaDetailState extends State<VocaDetail> {
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white,),onPressed: (){
-          Navigator.pop(context);
+          Get.off(()=>MainPage());
         },
         ),
         backgroundColor: kPrimaryColor, centerTitle: true, elevation: 0.0,
