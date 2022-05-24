@@ -167,7 +167,8 @@ class _MyPageState extends State<MyPage> {
                       height: 200,
                       child: Center(
                         child: Image.asset(
-                            "assets/resource/bee" + level.toString() + ".png"),
+                            /*"assets/resource/bee" + level.toString() + ".png")*/
+                            "assets/resource/bee" + "3" + ".png"),
                       ))
                 ],
               ))),
