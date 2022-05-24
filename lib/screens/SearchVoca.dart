@@ -92,12 +92,13 @@ class _SearchVocaState extends State<SearchVoca> {
     //return await ShowDialog(res['id'].toString(),base64Image);
     else {
       // duplicate 가 no 이면 해당 촬영한 단어가 촬영미션의 단어와 일치하는지 비교한 후 맞을 경우 camera_mission 테이블의 completed를 1로 설정하기
-      return await Get.to(() => TempVocaDetail(), arguments: res);
-      // Voca voca = Voca(english:res['english'].toString(),korean: res['korean'].toString());
-      // voca_db().insertVoca(voca);
-      // CameraMissionDB().cameraUpdate(res['english']);
-      // MyLevel().getScore(2);
-      // return await Get.to(() => VocaDetail(), arguments: res);
+      print(res['percentage']);
+      if(res['percentage'] <= 70){
+        print('다시 촬영해주세요 다이어로그 띄우기');
+        return await ShowNotCorret();
+      }else{
+        return await Get.to(() => TempVocaDetail(), arguments: res);
+      }
     }
   }
 
@@ -342,6 +343,36 @@ class _SearchVocaState extends State<SearchVoca> {
                     Get.to(() => VocaDetail(), arguments: res);
                   },
                   child: Text("확인", style: TextStyle(fontFamily: "GmarketSans", fontSize: 25, color: kPrimaryColor))),
+            ],
+          );
+        });
+  }
+  ShowNotCorret() {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
+            title: Column(
+              children: <Widget>[
+                new Text("불확실 단어", style: const TextStyle(fontFamily: "GmarketSans", fontSize: 25),),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Text("정확히 촬영해주세요.", style: TextStyle(fontFamily: "GmarketSans",fontSize: 20)),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text("확인", style: const TextStyle(fontFamily: "GmarketSans", fontSize: 25, color: kPrimaryColor))),
             ],
           );
         });
